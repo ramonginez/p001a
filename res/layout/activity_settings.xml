@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#EDEDED"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#EDEDED"
+        android:gravity="center"
+        android:padding="10dip"
+        android:text="@string/SETTING_TITTLE"
+        android:textColor="#878787"
+        android:textSize="25dip"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#B0B0B0"
+        android:orientation="horizontal"
+        android:weightSum="1.0" >
+
+        <!-- Project -->
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:paddingLeft="5dip"
+            android:text="@string/SETTING_SERVER"
+            android:textSize="15dip"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/SETTINGS_ID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".4"
+            android:inputType="text" >
+        </EditText>
+
+        <Button
+            android:id="@+id/BTN_SERVER_SAVE_ID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".4"
+            android:onClick="onClick"
+            android:text="@string/MAIN_FORM_GUARDAR" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#EDEDED"
+        android:orientation="horizontal"
+        android:padding="15dip" >
+
+        <Button
+            android:id="@+id/BTN_SYNC_ID"
+            android:layout_width="fill_parent"
+            android:layout_height="80dip"
+            android:onClick="onClick"
+            android:text="@string/SETTING_SINCRONIZAR" />
+    </LinearLayout>
+
+</LinearLayout>

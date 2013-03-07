@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="VOID"></string>
+    
+    <string name="tittle">Activo Fijo 21</string>
+    <string name="app_name">VASA</string>
+    <string name="ScanBtn">Scan</string>
+    <string name="PicBtn">Foto</string>
+    <string name="SetTextBtn">Guardar</string>
+    <string name="SetTextBackBtn">Regresar</string>
+    <string name="CodeTittle">Codigo:</string>
+    <string name="AudioBtn">Observaciones:</string>
+    <string name="ImgTittle">Imagenes:</string>
+    <string name="AudioTittle">Audio:</string>
+    <string name="MAIN_FORM_TITLE">Activo VASA</string>
+    <string name="MAIN_FORM_UBICACION">Ubicación</string>
+    <string name="MAIN_FORM_ACTIVO">Activo</string>
+    <string name="MAIN_FORM_CODIGO_VASA">Código Vasa:</string>
+    <string name="MAIN_FORM_CODIGO_CLIENTE">Código Cliente:</string>
+    <string name="MAIN_FORM_PROYECTO">Proyecto:</string>
+    <string name="MAIN_FORM_PLANTA">Planta:</string>
+    <string name="MAIN_FORM_AREA">Area:</string>
+    <string name="MAIN_FORM_EDIFICIO">Edificio:</string>
+    <string name="MAIN_FORM_DEPARTAMENTO">Departamento:</string>
+    <string name="MAIN_FORM_NOMBRE">Nombre:</string>
+    <string name="MAIN_FORM_PISO">Piso:</string>
+    <string name="MAIN_FORM_CODIGO">Codigo:</string>
+    <string name="MAIN_FORM_DESCRIPCION">Descripcion:</string>
+    <string name="MAIN_FORM_DESCRIPCION_1">Construido con laminas de acero al carbono</string>
+    <string name="MAIN_FORM_DESCRIPCION_2">Construido con laminas de acero inoxidable</string>
+    <string name="MAIN_FORM_DESCRIPCION_3">Recubierto con material aislante</string>
+    <string name="MAIN_FORM_MARCA">Marca:</string>
+    <string name="MAIN_FORM_FABRICANTE">Fabricante:</string>
+    <string name="MAIN_FORM_MODELO">Modelo:</string>
+    <string name="MAIN_FORM_PAIS">Pais Origen:</string>
+    <string name="MAIN_FORM_SERIAL">Serial #:</string>
+    <string name="MAIN_FORM_CODIGO_PLANTA">Codigo de planta:</string>
+    <string name="MAIN_FORM_TIPO">Tipo:</string>
+    <string name="MAIN_FORM_CAPACIDAD">Capacidad:</string>
+    <string name="MAIN_FORM_DIMENCIONES">Dimensiones:</string>
+    <string name="MAIN_FORM_DIMENSIONES_PUL">pul.</string>
+    <string name="MAIN_FORM_DIMENSIONES_L">L</string>
+    <string name="MAIN_FORM_DIMENSIONES_H">H</string>
+    <string name="MAIN_FORM_DIMENSIONES_A">A</string>
+    <string name="MAIN_FORM_DIMENCIONES_M">m. </string>
+    <string name="MAIN_FORM_DIAMETRO">Diametro:</string>
+    <string name="MAIN_FORM_LONGITUD">Longitud(l):</string>
+    <string name="MAIN_FORM_ANCHO">Ancho(a):</string>
+    <string name="MAIN_FORM_ALTURA">Altura(h):</string>
+    <string name="MAIN_FORM_ACCIONADO">Accionado(A) por:</string>
+    <string name="MAIN_FORM_ACCIONADO_DE">De:</string>
+    <string name="MAIN_FORM_MOTOR_ELECTRICO">Motor Electrico</string>
+    <string name="MAIN_FORM_MOTOR_HP">HP </string>
+    <string name="MAIN_FORM_MOTOR_KW">KW </string>
+    <string name="MAIN_FORM_MOTOR_RPM">RPM</string>
+    <string name="MAIN_FORM_MOTOR_ACOPLADO">Acoplado con un reductor de velocidad</string>
+    <string name="MAIN_FORM_MOTOR_A_TRAVES">A traves de: </string>
+    <string name="MAIN_FORM_COMPLETO">Completo (A) con:</string>
+    <string name="MAIN_FORM_BASE">Base propia</string>
+    <string name="MAIN_FORM_ESTRUCTURA_1">Estructura de soporte construida con perfiles metalicos soldados apoyada al piso</string>
+    <string name="MAIN_FORM_ESTRUCTURA_2">Estructura de soporte construida con perfiles metalicos soldados apernada al piso</string>
+    <string name="MAIN_FORM_ESTADO">Estado actual (%): </string>
+    <string name="MAIN_FORM_ESTADO_1">Perfecta: </string>
+    <string name="MAIN_FORM_ESTADO_2">Normal: </string>
+    <string name="MAIN_FORM_ESTADO_3">Regular: </string>
+    <string name="MAIN_FORM_ESTADO_4">Mal: </string>
+    <string name="MAIN_FORM_ESTADO_5">Pesima: </string>
+    <string name="MAIN_FORM_ESTADO_FUNCIONANDO">Funcionando:</string>
+    <string name="MAIN_FORM_ESTADO_FUNCIONANDO_SI">Si</string>
+    <string name="MAIN_FORM_ESTADO_FUNCIONANDO_NO">No</string>
+    <string name="MAIN_FORM_ESTADO_FECHA_FABRICACION">Fecha de fabricacion:</string>
+    <string name="MAIN_FORM_ESTADO_EDAD_APARENTE">Edad aparente:</string>
+    <string name="MAIN_FORM_ESTADO_ANOS">Anos:</string>
+    <string name="MAIN_FORM_OBSERVACIONES">Observaciones:</string>
+    <string name="MAIN_FORM_FLUIDO">Fluido:</string>
+    <string name="MAIN_FORM_ESTIMADO">Estimado:</string>
+    <string name="MAIN_FORM_FLUIDO_ENTRADA">Entrada:</string>
+    <string name="MAIN_FORM_FLUIDO_SALIDA">Salida:</string>
+    <string name="MAIN_FORM_FOTO">Foto:</string>
+    <string name="MAIN_FORM_GRUPO_INVENTARIO">Grupo de inventario:</string>
+    <string name="MAIN_FORM_INVENTARIADO">Inventariado por:</string>
+    <string name="MAIN_FORM_REVISADO">Revisado por:</string>
+    <string name="MAIN_FORM_A_CALIDAD">Aseguramiento de calidad:</string>
+    <string name="MAIN_FORM_TRANSCRIPCION">Transcripcion:</string>
+    <string name="MAIN_FORM_FECHA">Fecha:</string>
+    <string name="MAIN_FORM_GUARDAR">Guardar</string>
+    <string name="MAIN_LISTA_NUEVO">Agregar</string>
+    <string name="MAIN_LISTA_REGRESAR">Regresar a proyectos</string>
+    <string name="MAIN_LISTA_ABRIR">Registros existente:</string>
+    <string name="MAIN_LISTA_PROYECTOS">Proyectos existente:</string>
+    <string name="MAIN_LOGOUT">Logout</string>
+    <string name="LOGIN_FORM_UID">Usuario:</string>
+    <string name="LOGIN_FORM_PASSWORD">Password:</string>
+    <string name="LOGIN_BTN">Login</string>
+    <string name="LOGIN_FORM_BIENVENIDOS">Bienvenidos</string>
+    <string name="MAIN_SETTING">Settings</string>
+    <string name="MAIN_PROYECTO">Proyectos</string>
+    <string name="SETTING_SERVER">Server:</string>
+    <string name="SETTING_TITTLE">Setting VASA:</string>
+    <string name="SETTING_SINCRONIZAR">Sincronizar</string>
+    <string name="RECUBIERTO">Recubierto con:</string>
+    <string name="COMPLETO">Completo con:</string>
+    <string name="CONDICION">Condicion:</string>
+
+    <string-array name="CONDICION_VALUE">
+        <item></item>
+        <item>0- Perfecta</item>
+        <item>5- Normal</item>
+        <item>10- Normal</item>
+        <item>15- Normal</item>
+        <item>20- Regular</item>
+        <item>30- Regular</item>
+        <item>40- Regular</item>
+        <item>50- Malo</item>
+        <item>55- Malo</item>
+        <item>60- Malo</item>
+        <item>70- Chatarra</item>
+    </string-array>
+
+ 
+
+    <string-array name="RECUBIERTO_CON">
+        <item></item>
+        <item>Aislante termico</item>
+        <item>Chaqueta aluminio</item>
+        <item>Doble camisa</item>
+    </string-array>
+
+    <string name="ACCIONADO_POR_PROMPT">Accionado por</string>
+
+    <string-array name="ACCIONADO_POR">
+        <item></item>
+        <item>Motor electrico</item>
+        <item>Motor reductor</item>
+    </string-array>
+
+    <string name="CONSTRUIDO">Construido con:</string>
+    <string name="CONSTRUIDO_E">e=</string>
+    <string name="CONSTRUIDO_MM">mm</string>
+
+    <string-array name="CONSTRUIDO_CON">
+        <item></item>
+        <item>Lamina de acero al carbono</item>
+        <item>Lamina de acero inoxidable</item>
+        <item>Concreto Armado</item>
+    </string-array>
+
+    <string name="MONTADO">Montado sobre:</string>
+
+    <string-array name="MONTADO_SOBRE">
+        <item></item>
+        <item>Base propia</item>
+        <item>Estructuras de soporte metalicos apoyadas al piso</item>
+        <item>Estructuras de soporte metalicos pernadas al piso</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#EDEDED"
+                android:gravity="center"
+                android:padding="10dip"
+                android:text="@string/MAIN_FORM_TITLE"
+                android:textColor="#878787"
+                android:textSize="25dip"
+                android:textStyle="bold" />
+            
+             <Button
+                    android:id="@+id/BTN_REGRESAR_ID"
+                    android:layout_height="wrap_content"
+                	android:layout_width="fill_parent"
+                	 android:gravity="center"
+                android:padding="10dip"
+                    android:onClick="onClick"
+                    android:text="@string/MAIN_LISTA_REGRESAR" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#B0B0B0"
+                android:orientation="horizontal"
+                android:weightSum="1.0" >
+
+                <!-- Project -->
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:paddingLeft="5dip"
+                    android:text="@string/MAIN_FORM_PROYECTO"
+                    android:textSize="15dip"
+                    android:textStyle="bold" />
+                
+                <TextView
+                    android:id="@+id/INVENTARIOS_PROYECTO_ID"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:paddingLeft="5dip"
+                    android:textSize="15dip"
+                    android:textStyle="bold" />
+
+
+                <!-- Nombre -->
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:paddingLeft="5dip"
+                    android:text="@string/MAIN_FORM_NOMBRE"
+                    android:textSize="15dip"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/INVENTARIOS_NOMBRE_ID"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:inputType="text"
+                    android:paddingLeft="5dip" >
+                </EditText>
+
+                <Button
+                    android:id="@+id/BTN_NUEVO_ID"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".25"
+                    android:onClick="onClick"
+                    android:paddingLeft="5dip"
+                    android:text="@string/MAIN_LISTA_NUEVO" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#EDEDED"
+                android:text="@string/MAIN_LISTA_ABRIR"
+                android:textColor="#878787"
+                android:textSize="25dip"
+                android:textStyle="bold" />
+
+            <TableLayout
+                android:id="@+id/LISTA_INVENTARIO_ID"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

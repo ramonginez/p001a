@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dip"
+        android:text="@string/LOGIN_FORM_BIENVENIDOS"
+        android:textColor="#878787"
+        android:textSize="45dip"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo" />
+    </RelativeLayout>
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="15dip" >
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:gravity="right"
+                android:padding="5dip"
+                android:text="@string/LOGIN_FORM_UID" />
+
+            <EditText
+                android:id="@+id/LOGIN_FORM_UID"
+                android:layout_width="160sp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:gravity="left"
+                android:inputType="text" >
+            </EditText>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:gravity="right"
+                android:padding="5dip"
+                android:text="@string/LOGIN_FORM_PASSWORD" />
+
+            <EditText
+                android:id="@+id/LOGIN_FORM_PASSWORD"
+                android:layout_width="160sp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:gravity="left"
+                android:inputType="textPassword" >
+            </EditText>
+        </TableRow>
+    </TableLayout>
+
+    <RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="50sp" >
+ 
+    <Button
+        android:id="@+id/BTN_LOGIN_ID"
+        android:layout_width="255sp"
+        android:layout_height="wrap_content"
+       	android:layout_centerHorizontal="true"
+       	android:layout_centerVertical="true"
+       	android:text="@string/LOGIN_BTN" />
+ 	</RelativeLayout>
+ 	
+      <RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="50sp" >
+ 
+    <Button
+        android:id="@+id/BTN_LONGIN_SYN_ID"
+        android:layout_width="255sp"
+        android:layout_height="wrap_content"
+       	android:layout_centerHorizontal="true"
+       	android:layout_centerVertical="true"
+       	android:text="@string/SETTING_SINCRONIZAR" />
+    
+ 	</RelativeLayout>
+ 	
+    
+</LinearLayout>

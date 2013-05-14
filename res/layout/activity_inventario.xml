@@ -308,13 +308,19 @@
                         android:text="@string/MAIN_FORM_TIPO"
                         android:textStyle="bold" />
 
-                    <EditText
+                    <!-- OJO -->
+                    <com.nahmens.inventario.utils.InstantAutoComplete
+					    android:id="@+id/MAIN_FORM_TIPO_ID"
+					    android:layout_width="0dp"
+					    android:layout_weight="0.2"
+					    android:layout_height="wrap_content" />
+                  <!--    <EditText
                         android:id="@+id/MAIN_FORM_TIPO_ID"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.2"
                         android:inputType="text" >
-                    </EditText>
+                    </EditText> -->
                 </TableRow>
 
                 <TableRow
@@ -879,7 +885,7 @@
                         android:layout_height="wrap_content" >
 
                         <LinearLayout
-                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            
                             android:id="@+id/audio"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -922,7 +928,7 @@
                         android:layout_height="wrap_content" >
 
                         <LinearLayout
-                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            
                             android:id="@+id/images"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

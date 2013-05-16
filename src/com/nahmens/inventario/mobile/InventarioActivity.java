@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 import android.annotation.SuppressLint;
@@ -31,6 +32,8 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -41,10 +44,12 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.text.Editable;
+import android.text.TextWatcher;
 
 import com.nahmens.inventario.Inventario;
-import com.nahmens.inventario.mobile.R;
 import com.nahmens.inventario.sqlite.InventarioControllerImpl;
+import com.nahmens.inventario.utils.InstantAutoComplete;
 
 @SuppressLint("ParserError")
 public class InventarioActivity extends Activity {
@@ -70,6 +75,9 @@ public class InventarioActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_inventario);
+		
+		
+		
 
 		Bundle bundle = getIntent().getExtras();
 
@@ -77,7 +85,10 @@ public class InventarioActivity extends Activity {
 
 		inventarioController = new com.nahmens.inventario.sqlite.InventarioControllerImpl(this);
 
-		inventario = inventarioController.getInventario(inventarioId);
+			inventario = inventarioController.getInventario(inventarioId);
+
+		}
+
 
 		setPicture();
 
@@ -88,13 +99,19 @@ public class InventarioActivity extends Activity {
 		setProject();
 
 
+
 	}
-	
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-	    super.onConfigurationChanged(newConfig);
-	 
-	   //Do nothing
+
+
+
+
+
+
+
+	public static void clearToStart(){
+
+		inventario = null;
+
 	}
 
 
@@ -200,21 +217,13 @@ public class InventarioActivity extends Activity {
 
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();  
 
-			Bitmap bitmap = BitmapFactory.decodeFile( path, options );
+			Bitmap bitmap = BitmapFactory.decodeFile( _path, options );
 			
 			bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);   
 
 			byte[] photo = baos.toByteArray(); 
 
-			ImageView image = new ImageView(this); 
-
-	        Bitmap bitmap2 = BitmapFactory.decodeByteArray(photo, 0, photo.length);
-
-			image.setImageBitmap(bitmap2);
-
-			imagesContainer.addView(image, 200, 200); 
-
-			imgList.add(photo);
+			setImgOnDisplay(photo);
 			
 		
 		}catch (Exception e){
@@ -228,9 +237,9 @@ public class InventarioActivity extends Activity {
 
 	private void setImgOnDisplay(byte[] photo) {
 		
-		ImageView image = new ImageView(this); 
+		ImageView image = new ImageView(_view.getContext()); 
 
-        Bitmap bitmap = BitmapFactory.decodeByteArray(photo, 0, photo.length);
+		Bitmap bitmap = BitmapFactory.decodeByteArray(photo, 0, photo.length);
 
 		image.setImageBitmap(bitmap);
 
@@ -238,7 +247,7 @@ public class InventarioActivity extends Activity {
 
 		imgList.add(photo);
 
-		
+
 	}
 
 
@@ -299,7 +308,7 @@ public class InventarioActivity extends Activity {
 			InputStream in = getContentResolver().openInputStream(audioUri); 
 
 			byte[] binaryData = readBytes(in);
-			
+
 			setDisplayAudio(binaryData);
 
 
@@ -370,19 +379,19 @@ public class InventarioActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				
+
 				EditText et = (EditText)findViewById(R.id.MAIN_FORM_NOMBRE_ID ); 
 
 				String nombre = et.getText().toString();
 
 				if(nombre==null||nombre.length()==0){
-					
+
 					String msg = "Debe incluir el nombre del proyecto";
-					
+
 					Toast.makeText(getApplicationContext(), msg ,Toast.LENGTH_LONG).show();
-					
+
 				}else{
-					
+
 					save();
 
 					inventarioController.saveInventario(inventario);
@@ -393,7 +402,7 @@ public class InventarioActivity extends Activity {
 					finish();
 
 				}
-				
+
 			}
 
 
@@ -538,9 +547,9 @@ public class InventarioActivity extends Activity {
 		if(media!=null){
 
 			for(byte[] img:media){
-				
+
 				setImgOnDisplay(img);
-			
+
 			}
 
 		}
@@ -571,7 +580,7 @@ public class InventarioActivity extends Activity {
 			data = new HashMap<String,String>();
 
 		}
-		
+
 
 		//	saveData(data, R.id.MAIN_FORM_PROYECTO_ID , Inventario.PROYECTO);
 		//	saveData(data, R.id.MAIN_FORM_PLANTA_ID , Inventario.PLANTA);
@@ -703,31 +712,31 @@ public class InventarioActivity extends Activity {
 		// and then we can return your byte array.
 		return byteBuffer.toByteArray();
 	}
-	
+
 	private void playMp3(byte[] mp3SoundByteArray) {
-	    try {
-	        // create temp file that will hold byte array
-	        File tempMp3 = File.createTempFile("audiotemp", "mp3", getCacheDir());
-	        tempMp3.deleteOnExit();
-	        FileOutputStream fos = new FileOutputStream(tempMp3);
-	        fos.write(mp3SoundByteArray);
-	        fos.close();
+		try {
+			// create temp file that will hold byte array
+			File tempMp3 = File.createTempFile("audiotemp", "mp3", getCacheDir());
+			tempMp3.deleteOnExit();
+			FileOutputStream fos = new FileOutputStream(tempMp3);
+			fos.write(mp3SoundByteArray);
+			fos.close();
 
-	        // Tried reusing instance of media player
-	        // but that resulted in system crashes...  
-	        MediaPlayer mediaPlayer = new MediaPlayer();
+			// Tried reusing instance of media player
+			// but that resulted in system crashes...  
+			MediaPlayer mediaPlayer = new MediaPlayer();
 
-	        // Tried passing path directly, but kept getting 
-	        // "Prepare failed.: status=0x1"
-	        // so using file descriptor instead
-	        FileInputStream fis = new FileInputStream(tempMp3);
-	        mediaPlayer.setDataSource(fis.getFD());
+			// Tried passing path directly, but kept getting 
+			// "Prepare failed.: status=0x1"
+			// so using file descriptor instead
+			FileInputStream fis = new FileInputStream(tempMp3);
+			mediaPlayer.setDataSource(fis.getFD());
 
-	        mediaPlayer.prepare();
-	        mediaPlayer.start();
-	    } catch (IOException ex) {
-	        ex.printStackTrace();
-	    }
+			mediaPlayer.prepare();
+			mediaPlayer.start();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 

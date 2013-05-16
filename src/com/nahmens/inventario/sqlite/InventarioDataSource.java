@@ -55,6 +55,7 @@ public class InventarioDataSource {
 		dbHelper.close();
 	}
 
+	@SuppressWarnings("unused")
 	private User insertUser(String user, String pwd){
 
 		try{

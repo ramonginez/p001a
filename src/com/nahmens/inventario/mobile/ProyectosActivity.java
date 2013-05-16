@@ -7,6 +7,7 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,6 +57,13 @@ public class ProyectosActivity extends Activity {
 		setList();
 
 
+	}
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+	    super.onConfigurationChanged(newConfig);
+	 
+	   //Do nothing
 	}
 
 	@Override
@@ -234,8 +242,6 @@ public class ProyectosActivity extends Activity {
 			intent.putExtra(InventariosActivity.PROPERTY_PROJECT_KEY , id);
 
 			intent.putExtra(InventariosActivity.PROPERTY_KEY , uid);
-
-			InventarioActivity.clearToStart();
 
 			startActivityForResult(intent, 1);
 

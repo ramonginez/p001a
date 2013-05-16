@@ -121,11 +121,7 @@ public class Inventario {
 	public static final String MONTADO_SOBRE  ="montadoSobre";
 	public static final String CONDICION  ="condicion";
 	public static final String ESTIMADO  ="estimado";
-
-	
-	
-
-
+	public static final String EJE_BOMBA ="ejeBomba";
 
 
 }

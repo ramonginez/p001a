@@ -39,10 +39,10 @@ public class  InventarioControllerImpl implements InventarioController {
 	private InventarioDataSource dataSource;
 
 	public static final String SERVER_RESPONSE_USER_LIST_KEY = "users";
-	public static final String SERVER_RESPONSE_USER_ID_KEY = "id";
-	public static final String SERVER_RESPONSE_USER_PWD_KEY = "pwd";
+	public static final String SERVER_RESPONSE_USER_ID_KEY = "USERNAME";
+	public static final String SERVER_RESPONSE_USER_PWD_KEY = "PASSWORD";
 	private static final String DEFAULT_SERVER = "http://vasa.zentyal.me/webserver/";
-	//private static final String DEFAULT_SERVER = "http://200.8.215.209/webserver/";
+	//private static final String DEFAULT_SERVER = "http://192.168.1.104:8888/webserver/";
 
 	public InventarioControllerImpl(Context context){
 

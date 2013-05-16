@@ -13,8 +13,13 @@ import java.util.UUID;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -43,48 +48,36 @@ import com.nahmens.inventario.sqlite.InventarioControllerImpl;
 
 @SuppressLint("ParserError")
 public class InventarioActivity extends Activity {
-	/** Called when the activity is first created. */
 
 	final Context context = this;
 
 	public final static int RETURN_PICTURE_CODE = 200;
 	public final static int RETURN_AUDIO_CODE = 400;
-	protected static final String PHOTO_TAKEN = "photo_taken";
 
-	//private static Controller controller = new com.nahmens.activos.sqlite.ControllerImpl();
 	private static InventarioControllerImpl inventarioController;
 	private ImageButton buttonPicture;
-	private boolean _taken;
-	static String _path;
-	static String _audioPath;
-
-	LinearLayout _imagesContainer;
-	List<byte[]> _imgList = new ArrayList<byte[]>();
-
-	LinearLayout _audioContainer;
-	List<byte[]> _audioList = new ArrayList<byte[]>();
-
-	static View _view;
-	static Inventario inventario;
+	private String path;
+	private String audioPath;
+	private LinearLayout imagesContainer;
+	private List<byte[]> imgList = new ArrayList<byte[]>();
+	private LinearLayout audioContainer;
+	private List<byte[]> audioList = new ArrayList<byte[]>();
+	private Inventario inventario = null;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-
+		
 		setContentView(R.layout.activity_inventario);
 
 		Bundle bundle = getIntent().getExtras();
 
-		if(inventario == null){
+		String inventarioId = (String) bundle.get(InventariosActivity.PROPERTY_KEY);
 
-			String inventarioId = (String) bundle.get(InventariosActivity.PROPERTY_KEY);
+		inventarioController = new com.nahmens.inventario.sqlite.InventarioControllerImpl(this);
 
-			inventarioController = new com.nahmens.inventario.sqlite.InventarioControllerImpl(this);
-
-			inventario = inventarioController.getInventario(inventarioId);
-
-		}
-
+		inventario = inventarioController.getInventario(inventarioId);
 
 		setPicture();
 
@@ -95,29 +88,22 @@ public class InventarioActivity extends Activity {
 		setProject();
 
 
-
+	}
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+	    super.onConfigurationChanged(newConfig);
+	 
+	   //Do nothing
 	}
 
 
-
-
-
-
-
-	public static void clearToStart(){
-
-		inventario = null;
-
-	}
-
-
-	// Function to read the result from newly created activity
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		super.onActivityResult(requestCode, resultCode, data);
 
-		Log.i( "MakeMachine", "resultCode: " + resultCode );
+		Log.i( "onActivityResult", "resultCode: " + resultCode );
 
 		switch( requestCode ){
 
@@ -160,7 +146,7 @@ public class InventarioActivity extends Activity {
 
 	private void setPicture() {
 
-		_imagesContainer =  (LinearLayout)findViewById( R.id.images ); 
+		imagesContainer =  (LinearLayout)findViewById( R.id.images ); 
 
 		buttonPicture = (ImageButton) findViewById(R.id.picBtn);
 
@@ -173,74 +159,62 @@ public class InventarioActivity extends Activity {
 	{	
 		public void onClick( View view ) {
 
-			Log.i( "MakeMachine", "onClick()" );
-
-			_view= view;
+			Log.i( "ButtonPictureClickHandler", "onClick()" );
 
 			UUID id = UUID.randomUUID();
 
-			_path = Environment.getExternalStorageDirectory() +"/"+id.toString()+".jpg";
+			path = Environment.getExternalStorageDirectory() +"/"+id.toString()+".jpg";
 
-			startCameraActivity();
+			File file = new File( path );
+
+			Uri outputFileUri = Uri.fromFile( file );
+			
+			try { 
+				
+				Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE );
+				intent.putExtra( MediaStore.EXTRA_OUTPUT, outputFileUri );
+
+				startActivityForResult( intent, RETURN_PICTURE_CODE );
+				
+			} catch (ActivityNotFoundException e) {
+				
+				showNoSupportedDialog();
+				
+			}
 
 		}
 
 	}
 
 
-	protected void startCameraActivity()
-	{
-
-		Log.i( "MakeMachine", "startCameraActivity()" );
-
-		/*//define the file-name to save photo taken by Camera activity
-		String fileName = "new-photo-name.jpg";
-		//create parameters for Intent with filename
-		ContentValues values = new ContentValues();
-		values.put(MediaStore.Images.Media.TITLE, fileName);
-		values.put(MediaStore.Images.Media.DESCRIPTION,"Image capture by camera");
-		//imageUri is the current activity attribute, define and save it for later usage (also in onSaveInstanceState)
-		Uri imageUri = getContentResolver().insert(
-				MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-		//create new Intent
-		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-		intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-		startActivityForResult(intent, RETURN_PICTURE_CODE);*/
-
-
-		File file = new File( _path );
-		Uri outputFileUri = Uri.fromFile( file );
-
-		Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE );
-		intent.putExtra( MediaStore.EXTRA_OUTPUT, outputFileUri );
-
-		save();
-		startActivityForResult( intent, RETURN_PICTURE_CODE );
-	}
-
 	protected void onPhotoTaken()
 	{
 
-
-		Log.i( "MakeMachine", "onPhotoTaken()");
-
-		_taken = true;
+		Log.i( "onPhotoTaken", "onPhotoTaken()");
 
 		BitmapFactory.Options options = new BitmapFactory.Options();
+		
 		options.inSampleSize = 4;
 
 		try{
 
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();  
 
-			Bitmap bitmap = BitmapFactory.decodeFile( _path, options );
+			Bitmap bitmap = BitmapFactory.decodeFile( path, options );
 			
 			bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);   
 
 			byte[] photo = baos.toByteArray(); 
 
-			setImgOnDisplay(photo);
+			ImageView image = new ImageView(this); 
+
+	        Bitmap bitmap2 = BitmapFactory.decodeByteArray(photo, 0, photo.length);
+
+			image.setImageBitmap(bitmap2);
+
+			imagesContainer.addView(image, 200, 200); 
+
+			imgList.add(photo);
 			
 		
 		}catch (Exception e){
@@ -254,40 +228,19 @@ public class InventarioActivity extends Activity {
 
 	private void setImgOnDisplay(byte[] photo) {
 		
-		ImageView image = new ImageView(_view.getContext()); 
+		ImageView image = new ImageView(this); 
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(photo, 0, photo.length);
 
 		image.setImageBitmap(bitmap);
 
-		_imagesContainer.addView(image, 200, 200); 
+		imagesContainer.addView(image, 200, 200); 
 
-		_imgList.add(photo);
+		imgList.add(photo);
 
 		
 	}
 
-
-
-
-
-
-
-	@Override
-	protected void onSaveInstanceState( Bundle outState ) {
-		Log.i( "MakeMachine", "onSaveInstanceState()");
-
-		outState.putBoolean( PHOTO_TAKEN, _taken );
-	}
-
-	@Override 
-	protected void onRestoreInstanceState( Bundle savedInstanceState)
-	{
-		Log.i( "MakeMachine", "onRestoreInstanceState()");
-		if( savedInstanceState.getBoolean( PHOTO_TAKEN ) ) {
-			onPhotoTaken();
-		}
-	}
 
 
 
@@ -301,7 +254,7 @@ public class InventarioActivity extends Activity {
 
 	private void setAudio() {
 
-		_audioContainer = (LinearLayout)findViewById( R.id.audio );
+		audioContainer = (LinearLayout)findViewById( R.id.audio );
 
 		ImageButton buttonRecord = (ImageButton)findViewById(R.id.audioBtn);
 
@@ -317,16 +270,21 @@ public class InventarioActivity extends Activity {
 
 			Log.i( "AudioMachine", "startAudioActivity()" );
 
-			_view= view;
+			try { 
+				
+				Intent intent =
+						new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
 
-
-			Intent intent =
-					new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
-
-			startActivityForResult(intent, RETURN_AUDIO_CODE);
-
-
+				startActivityForResult(intent, RETURN_AUDIO_CODE);
+				
+			} catch (ActivityNotFoundException e) {
+				
+				showNoSupportedDialog();
+				
+			}
+		
 		}
+
 
 	}
 
@@ -363,9 +321,9 @@ public class InventarioActivity extends Activity {
 
 		imgView.setBackgroundResource(R.drawable.speaker);
 
-		_audioContainer.addView(imgView, 100, 100); 
+		audioContainer.addView(imgView, 100, 100); 
 
-		_audioList.add(binaryData);
+		audioList.add(binaryData);
 
 		AudioClickHandler audioClickHandler = new AudioClickHandler(binaryData);
 
@@ -494,6 +452,8 @@ public class InventarioActivity extends Activity {
 			setText(data, R.id.CONSTRUIDO_E_ID , Inventario.CONSTRUIDO_E);
 			setSpinner(data, R.id.MONTADO_SOBRE_ID,R.array.MONTADO_SOBRE,Inventario.MONTADO_SOBRE);
 			setSpinner(data, R.id.CONDICION_ID,R.array.CONDICION_VALUE,Inventario.CONDICION);
+			setSpinner(data, R.id.EJE_BOMBA_ID,R.array.EJE_BOMBA,Inventario.EJE_BOMBA);
+
 			setRadio(data, R.id.FUNCIONANDO_ID,Inventario.FUNCIONANDO);
 			setText(data, R.id.FLUIDO_ID , Inventario.FLUIDO);
 			setText(data, R.id.ESTIMADO_ID , Inventario.ESTIMADO);
@@ -645,14 +605,15 @@ public class InventarioActivity extends Activity {
 		saveData(data, R.id.CONSTRUIDO_E_ID , Inventario.CONSTRUIDO_E);
 		saveSpinner(data, R.id.MONTADO_SOBRE_ID,Inventario.MONTADO_SOBRE);
 		saveSpinner(data, R.id.CONDICION_ID,Inventario.CONDICION);
+		saveSpinner(data, R.id.EJE_BOMBA_ID,Inventario.EJE_BOMBA);
 		saveRadio(data, R.id.FUNCIONANDO_ID,Inventario.FUNCIONANDO);
 		saveData(data, R.id.FLUIDO_ID , Inventario.FLUIDO);
 		saveData(data, R.id.FLUIDO_ENTRADA_ID , Inventario.FLUIDO_ENTRADA);
 		saveData(data, R.id.FLUIDO_SALIDA_ID , Inventario.FLUIDO_SALIDA);
 		saveData(data, R.id.ESTIMADO_ID , Inventario.ESTIMADO);
 		inventario.setData(data);
-		inventario.setImageMedia(_imgList);
-		inventario.setAudioMedia(_audioList);
+		inventario.setImageMedia(imgList);
+		inventario.setAudioMedia(audioList);
 
 	}
 
@@ -769,5 +730,33 @@ public class InventarioActivity extends Activity {
 	    }
 	}
 
+
+	void showNoSupportedDialog() {
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+				context);
+ 
+			// set title
+			alertDialogBuilder.setTitle("VASA");
+ 
+			// set dialog message
+			alertDialogBuilder
+				.setMessage(R.string.ERROR_ACTION_NOT_SUPPORTED)
+				.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+					
+						dialog.cancel();
+
+					}
+				  });
+				
+ 
+				// create alert dialog
+				AlertDialog alertDialog = alertDialogBuilder.create();
+ 
+				// show it
+				alertDialog.show();
+		
+					
+	}
 
 }

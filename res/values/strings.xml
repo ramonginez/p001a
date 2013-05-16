@@ -154,4 +154,16 @@
         <item>Estructuras de soporte metalicos pernadas al piso</item>
     </string-array>
 
+     <string name="EJE_BOMBA">Eje de la Bomba:</string>
+    
+      <string-array name="EJE_BOMBA">
+        <item></item>
+        <item>Acero Inoxidable</item>
+        <item>Hierro Negro</item>
+        <item>Bronce</item>
+        <item>Aleacíon de Acero</item>
+    </string-array>
+    
+    <string name="ERROR_ACTION_NOT_SUPPORTED">Esta acción no esta soportada en el equipo!</string>
+    
 </resources>

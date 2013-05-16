@@ -7,6 +7,7 @@ import com.nahmens.inventario.sqlite.InventarioControllerImpl;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -48,6 +49,14 @@ public class LoginActivity extends Activity {
 
 
 
+	}
+	
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+	    super.onConfigurationChanged(newConfig);
+	 
+	   //Do nothing
 	}
 
 	private void setSYNButon() {
@@ -149,9 +158,9 @@ public class LoginActivity extends Activity {
 
 						intent.putExtra(InventariosActivity.PROPERTY_KEY , usuario);
 
-						InventarioActivity.clearToStart();
-
-						startActivityForResult(intent, 1);
+						startActivity(intent);
+						
+						finish();
 						
 					} catch (Exception e) {
 						

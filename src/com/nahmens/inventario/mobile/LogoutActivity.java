@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -56,7 +57,12 @@ public class LogoutActivity extends Activity {
 						public void onClick(DialogInterface dialog,int id) {
 							// if this button is clicked, close
 							// current activity
-							finish();
+							
+							Intent intent = new Intent(LogoutActivity.this, LoginActivity.class);
+					        intent.putExtra("finish", true);
+					        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
+					        startActivity(intent);
+					        finish();
 						}
 					  })
 					.setNegativeButton("No",new DialogInterface.OnClickListener() {

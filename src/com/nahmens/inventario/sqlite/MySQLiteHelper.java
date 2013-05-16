@@ -9,7 +9,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 
 	private static final String DATABASE_NAME = "inventario.db";
-	private static final int DATABASE_VERSION = 10;
+	private static final int DATABASE_VERSION = 12;
 	public static final String TABLE_INVENTARIO = "inventario";
 	public static final String TABLE_DATA = "data";
 	public static final String TABLE_USER = "user";
@@ -25,6 +25,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 	public static final String INVENTARIO_COLUMN_USER 	= "user";
 	public static final String INVENTARIO_COLUMN_ID 	= "id";
+	public static final String INVENTARIO_COLUMN_DATE 	= "date";
 	public static final String DATA_COLUMN_INVENTARIO 	= "inventario";
 	public static final String DATA_COLUMN_KEY 			= "key";
 	public static final String DATA_COLUMN_VALUE 		= "value";
@@ -39,7 +40,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	// Database creation sql statement
 	private static final String DATABASE_CREATE = "create table "
 			+ TABLE_INVENTARIO + "(" + INVENTARIO_COLUMN_ID
-			+ " text primary key not null, " + INVENTARIO_COLUMN_USER
+			+ " text primary key not null, " + INVENTARIO_COLUMN_DATE
+			+ " TIMESTAMP, " + INVENTARIO_COLUMN_USER
 			+ " text not null);";
 
 	private static final String DATABASE_CREATE_2 = "create table "
@@ -108,8 +110,17 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_GENERAL_DATA);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_APP_DATA);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_MEDIA);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHECKIN);
 
 		onCreate(db);
 	}
 
 }
+
+
+
+
+
+
+
+

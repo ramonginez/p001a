@@ -13,6 +13,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
@@ -64,6 +65,12 @@ public class InventariosActivity extends Activity {
 
 	}
 
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+	    super.onConfigurationChanged(newConfig);
+	 
+	   //Do nothing
+	}
 
 
 	@Override
@@ -210,8 +217,6 @@ public class InventariosActivity extends Activity {
 
 			intent.putExtra(InventariosActivity.PROPERTY_KEY , id);
 
-			InventarioActivity.clearToStart();
-
 			startActivityForResult(intent, 1); 	
 
 		}
@@ -284,8 +289,6 @@ public class InventariosActivity extends Activity {
 				Intent intent = new Intent(InventariosActivity.this,InventarioActivity.class);
 
 				intent.putExtra(InventariosActivity.PROPERTY_KEY , inventario.getId());
-
-				InventarioActivity.clearToStart();
 
 				startActivityForResult(intent, 1);
 			}		

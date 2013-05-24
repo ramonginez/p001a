@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="VOID"></string>
-    
     <string name="tittle">Activo Fijo 21</string>
     <string name="app_name">VASA</string>
     <string name="ScanBtn">Scan</string>
@@ -154,4 +153,287 @@
         <item>Estructuras de soporte metalicos pernadas al piso</item>
     </string-array>
 
+     <string name="EJE_BOMBA">Eje de la Bomba:</string>
+    
+      <string-array name="EJE_BOMBA">
+        <item></item>
+        <item>Acero Inoxidable</item>
+        <item>Hierro Negro</item>
+        <item>Bronce</item>
+        <item>Aleacíon de Acero</item>
+    </string-array>
+
+    <string name="ERROR_ACTION_NOT_SUPPORTED">Esta acción no esta soportada en el equipo!</string>
+    
+     <string-array name="AUTOCOMPLETE_TIPO_BOMBA">
+        <item>Centrifuga</item>
+        <item>Carcaza Partida</item>
+        <item>Tornillo </item>
+        <item>Cavidad Progresiva</item>
+        <item>Electromagnetica</item>
+        <item>Sumergible</item>
+        <item>Vacio</item>
+        <item>Autocebante</item>
+        <item>De Achique</item>
+        <item>Diafragma</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_COMPRESOR">
+        <item>Reciprocante</item>
+        <item>Tornillo Helicoidal</item>
+        <item>Centrifugo </item>
+        <item>Transportable</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_TORRE_ENFR">
+        <item>Tiro Forzado</item>
+        <item>Tiro Inducido</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_CALDERA">
+        <item>Pirotubular</item>
+        <item>Acuotubular</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_TANQUE">
+        <item>Cilindrico Vertical</item>
+        <item>Rectangular</item>
+        <item>Cuadrado</item>
+        <item>Cilindrico Horizontal</item>
+        <item>Esferico</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_INTERCAMBIADOR_CALOR">
+        <item>Tuberia Doble</item>
+        <item>Enfriado Por Aire</item>
+        <item>Placas Paralelas</item>
+        <item>Casco Y Tubo</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_CHILLER">
+        <item>Enfriado Por Aire</item>
+        <item>Enfriado Por Agua</item>
+        <item>Tornillo</item>
+        <item>Centrifugo</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_TRANSFORMADOR_MONOFASICO">
+        <item>Seco</item>
+        <item>En Aceite</item>
+    </string-array>
+
+    <string-array name="AUTOCOMPLETE_TIPO_TRANSFORMADOR_TRIFASICO">
+        <item>Seco</item>
+        <item>En Aceite</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_LLENADORA">
+        <item>Piston</item>
+        <item>Carrousel</item>
+        <item>Volumetrica</item>
+        <item>Gravimetrica</item>
+        <item>Manual</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_CERRADORA_TAPAS">
+        <item>Carrousel</item>
+        <item>Automatica</item>
+        <item>Manual</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_BALANZA">
+        <item>Analogica</item>
+        <item>Digital</item>
+        <item>Analitica</item>
+        <item>Semianalitica</item>
+        <item>Determinadora De Humedad</item>
+        <item>Comparativa</item>
+        <item>Mecanica</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_TORNO">
+        <item>Paralelo Universal</item>
+        <item>Revolver</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_TRANSPORTADOR">
+        <item>Cadena Table Top De Acero Inoxidable</item>
+        <item>Cadena Table Top De Plastico</item>
+        <item>Rodillos Locos</item>
+        <item>Cadena De Arastre</item>
+        <item>Banda Plastica</item>
+        <item>Banda De Lona</item>
+        <item>Banda De Caucho</item>
+        <item>Banda Sanitaria</item>
+        <item>Malla Metalica</item>
+        <item>Tornillo Sinfín</item>
+        <item>Bazuka</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_AGITADOR">
+        <item>Aspas</item>
+        <item>Propela</item>
+        <item>Paleta</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_SIERRA">
+        <item>Cinta Vertical</item>
+        <item>Cinta Horizontal</item>
+        <item>Vaiven</item>
+        <item>Circular De Corte Alternativo</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_MICROSCOPIO">
+        <item>Monocular</item>
+        <item>Binocular</item>
+        <item>Esteroscopico</item>
+        <item>Metalografico</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_PRENSA">
+        <item>Hidraulica</item>
+        <item>Electrica</item>
+        <item>Manual</item>
+        <item>Vertical</item>
+        <item>De Banco</item>
+        <item>Excentrica</item>
+        <item>Revolver</item>
+        <item>De Rodillos</item>
+        <item>Horizontal De Tornillo Sin Fin</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_FRESADORA">
+        <item>Horizontal</item>
+        <item>Vertical</item>
+        <item>Universal</item>
+        <item>Circular</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_TALADRO">
+        <item>Manual</item>
+        <item>Pedestal</item>
+        <item>Inalambrico</item>
+        <item>Martillo Percutor</item>
+        <item>De Banco</item>
+        <item>Radial</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_ESMERIL">
+        <item>Doble Cabezal</item>
+        <item>Manual</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_ELEVADOR">
+        <item>De Cangilones Metalicos</item>
+        <item>De Cangilones Plasticos</item>
+        <item>De Personas</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_SILO">
+        <item>Cilindrico Vertical</item>
+        <item>Cilindrico Horizontal</item>
+        <item>Rectangular</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_TAMIZ">
+        <item>Cernidor</item>
+        <item>Vibratorio</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_MOLINO">
+        <item>De Piedras</item>
+        <item>De Discos</item>
+        <item>De Cuchillas</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_COLECTOR_POLVOS">
+        <item>De Mangas</item>
+        <item>De Vacio</item>
+        <item>Centrifugo</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_FORMADORA_TUBOS">
+        <item>Helicoidal</item>
+        <item>Longitudinal</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_TANQUE_PULMON_AIRE">
+        <item>Cilindrico Vertical</item>
+        <item>Cilindrico Horizontal</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_COMPACTADORA">
+        <item>De Amarre</item>
+        <item>Portacamilla</item>
+        <item>Vertical</item>
+        <item>Horizontal</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_COLADOR">
+        <item>Rotativo</item>
+        <item>Vibratorio</item>
+        <item>De Discos</item>
+        <item>De Malla</item>
+        <item>Cesta Colador Perforado Giratorio</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_ROMANA_GANDOLAS">
+        <item>Mecanica</item>
+        <item>Electronica</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_REFINADOR">
+        <item>De Disco</item>
+        <item>Conico</item>
+        <item>Horizontal</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_IMPRESORA">
+        <item>Rotativa De X Colores</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_DESPASTILLADOR">
+        <item>Centrifugo</item>
+        <item>De Discos</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_ESPESADOR">
+        <item>De Discos</item>
+        <item>De Rodillos</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_REBOBINADORA">
+        <item>Automatico</item>
+        <item>Manual</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_MAQUINA_SOLDAR">
+        <item>De Arco Electrico</item>
+        <item>De Arco Sumergido</item>
+        <item>Micro Wire</item>
+        <item>Electropuntos</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_RECTIFICADORA">
+        <item>Plana</item>
+        <item>De Rodillos</item>
+        <item>De Doble Piedra</item>
+        <item>Horizontal</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_GUILLOTINA">
+        <item>Automatica</item>
+        <item>Manual</item>
+        <item>De Cuchillas</item>
+    </string-array>
+    
+    <string-array name="AUTOCOMPLETE_TIPO_MONTACARGA">
+        <item>A Gas</item>
+        <item>Electrico</item>
+        <item>A Gasolina</item>
+        <item>Dual</item>
+        <item>Manual</item>
+    </string-array>
+    
+    
 </resources>

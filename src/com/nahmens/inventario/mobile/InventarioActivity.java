@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 
 import android.annotation.SuppressLint;
@@ -19,7 +18,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -33,7 +31,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -62,33 +59,68 @@ public class InventarioActivity extends Activity {
 	private static InventarioControllerImpl inventarioController;
 	private ImageButton buttonPicture;
 	private String path;
-	private String audioPath;
+	//private String audioPath;
 	private LinearLayout imagesContainer;
 	private List<byte[]> imgList = new ArrayList<byte[]>();
 	private LinearLayout audioContainer;
 	private List<byte[]> audioList = new ArrayList<byte[]>();
 	private Inventario inventario = null;
-	
+	private Boolean isNew = false;
+	//Static hashmap not working investigar!
+	static String _lastArea;
+	static String _lastEdificio;
+	static String _lastDepartamento;
+	static String _lastPiso;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_inventario);
-		
-		
-		
 
 		Bundle bundle = getIntent().getExtras();
-
+		
 		String inventarioId = (String) bundle.get(InventariosActivity.PROPERTY_KEY);
-
-		inventarioController = new com.nahmens.inventario.sqlite.InventarioControllerImpl(this);
-
-			inventario = inventarioController.getInventario(inventarioId);
+		
+		if(bundle.get(InventariosActivity.NEW_INVENTARIO_PROPERTY_KEY)!=null){
+			
+			 isNew = (Boolean) bundle.get(InventariosActivity.NEW_INVENTARIO_PROPERTY_KEY);
 
 		}
 
+
+		inventarioController = new com.nahmens.inventario.sqlite.InventarioControllerImpl(this);
+
+		inventario = inventarioController.getInventario(inventarioId);
+		
+		if(isNew){
+			
+			HashMap<String,String>data = inventario.getData();
+
+
+			if(_lastArea!=null){
+				
+				data.put(Inventario.AREA, _lastArea);
+			}
+			
+			if(_lastEdificio!=null){
+				
+				data.put(Inventario.EDIFICIO, _lastEdificio);
+			}
+			
+			if(_lastDepartamento!=null){
+				
+				data.put(Inventario.DEPARTAMENTO, _lastDepartamento);
+			}
+			
+			if(_lastPiso!=null){
+				
+				data.put(Inventario.PISO, _lastPiso);
+			}
+						
+			
+			inventario.setData(data);
+		}
 
 		setPicture();
 
@@ -98,23 +130,196 @@ public class InventarioActivity extends Activity {
 
 		setProject();
 
-
+		//Asignamos un listener al campo nombre_id para ajustar los valores del tipo segun
+		//corresponda.
+		EditText teNombre = (EditText) findViewById(R.id.MAIN_FORM_NOMBRE_ID);
+		String nombre = teNombre.getText().toString();
+		teNombre.addTextChangedListener(new TextWatcher() {
+			 
+			   public void afterTextChanged(Editable s) {
+			   }
+			 
+			   public void beforeTextChanged(CharSequence s, int start, 
+			     int count, int after) {
+			   }
+			 
+			   public void onTextChanged(CharSequence s, int start, 
+			     int before, int count) {
+				   EditText teNombre = (EditText) findViewById(R.id.MAIN_FORM_NOMBRE_ID);
+				   String nombre = teNombre.getText().toString();
+				   setAutocompleteTipo(nombre);
+			   }
+			  });
+		
+		setAutocompleteTipo(nombre);
 
 	}
 
 
 
-
-
-
-
-	public static void clearToStart(){
-
-		inventario = null;
-
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+	    super.onConfigurationChanged(newConfig);
+	 
+	   //Do nothing
 	}
 
 
+
+
+	/*
+	 * Funcion que muestra lista de sugerencias sobre el campo tipo
+	 * @param nombre Valor del edit text nombre
+	 */
+	private void setAutocompleteTipo(String nombre){
+		
+
+		if(nombre!=null){
+			nombre = nombre.toLowerCase();
+
+			String[] tipo = null;
+			if(nombre.equals("bomba")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_BOMBA);
+				
+			}else if(nombre.equals("compresor de aire")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_COMPRESOR);
+				
+			}else if(nombre.equals("torre de enfriamiento")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_TORRE_ENFR);
+				
+			}else if(nombre.equals("caldera")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_CALDERA);
+				
+			}else if(nombre.equals("intercambiador de calor")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_INTERCAMBIADOR_CALOR);
+				
+			}else if(nombre.equals("chiller")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_CHILLER);
+				
+			}else if(nombre.equals("transformador monofasico")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_TRANSFORMADOR_MONOFASICO);
+				
+			}else if(nombre.equals("transformador trifasico")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_TRANSFORMADOR_TRIFASICO);
+				
+			}else if(nombre.equals("llenadora")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_LLENADORA);
+				
+			}else if(nombre.equals("cerradora de tapas")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_CERRADORA_TAPAS);
+				
+			}else if(nombre.equals("balanza")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_BALANZA);
+				
+			}else if(nombre.equals("torno")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_TORNO);
+				
+			}else if(nombre.equals("transportador")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_TRANSPORTADOR);
+				
+			}else if(nombre.equals("agitador")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_AGITADOR);
+				
+			}else if(nombre.equals("sierra")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_SIERRA);
+				
+			}else if(nombre.equals("microscopio")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_MICROSCOPIO);
+				
+			}else if(nombre.equals("prensa")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_PRENSA);
+				
+			}else if(nombre.equals("fresadora")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_FRESADORA);
+				
+			}else if(nombre.equals("taladro")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_TALADRO);
+				
+			}else if(nombre.equals("esmeril")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_ESMERIL);
+				
+			}else if(nombre.equals("elevador")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_ELEVADOR);
+				
+			}else if(nombre.equals("silo")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_SILO);
+				
+			}else if(nombre.equals("tamiz")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_TAMIZ);
+				
+			}else if(nombre.equals("molino")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_MOLINO);
+				
+			}else if(nombre.equals("colector de polvos")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_COLECTOR_POLVOS);
+				
+			}else if(nombre.equals("formadora de tubos")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_FORMADORA_TUBOS);
+				
+			}else if(nombre.equals("tanque pulmon de aire")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_TANQUE_PULMON_AIRE);
+				
+			}else if(nombre.equals("compactadora")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_COMPACTADORA);
+				
+			}else if(nombre.equals("colador")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_COLADOR);
+				
+			}else if(nombre.equals("romana para gandolas")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_ROMANA_GANDOLAS);
+				
+			}else if(nombre.equals("refinador")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_REFINADOR);
+				
+			}else if(nombre.equals("impresora")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_IMPRESORA);
+				
+			}else if(nombre.equals("despastillador")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_DESPASTILLADOR);
+				
+			}else if(nombre.equals("espesador")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_ESPESADOR);
+				
+			}else if(nombre.equals("rebobinadora")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_REBOBINADORA);
+				
+			}else if(nombre.equals("maquina de soldar")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_MAQUINA_SOLDAR);
+				
+			}else if(nombre.equals("rectificadora")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_RECTIFICADORA);
+				
+			}else if(nombre.equals("guillotina")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_GUILLOTINA);
+				
+			}else if(nombre.equals("montacarga")){
+				tipo =  getResources().getStringArray(R.array.AUTOCOMPLETE_TIPO_MONTACARGA);
+				
+			}else{
+				Log.e("InventarioActivity", "Valor de nombre no concuerda con los predefinidos");
+			}
+
+			InstantAutoComplete textView = (InstantAutoComplete) findViewById(R.id.MAIN_FORM_TIPO_ID);
+
+			if (tipo != null){
+
+				ArrayAdapter<String> adapter = 
+						new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tipo);
+				textView.setAdapter(adapter);
+				
+			}else{
+				ArrayAdapter<String> adapter = 
+						new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+				textView.setAdapter(adapter);
+			}
+		}
+	}
+
+
+	
+
+
+	// Function to read the result from newly created activity
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -217,13 +422,21 @@ public class InventarioActivity extends Activity {
 
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();  
 
-			Bitmap bitmap = BitmapFactory.decodeFile( _path, options );
+			Bitmap bitmap = BitmapFactory.decodeFile( path, options );
 			
 			bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);   
 
 			byte[] photo = baos.toByteArray(); 
 
-			setImgOnDisplay(photo);
+			ImageView image = new ImageView(this); 
+
+	        Bitmap bitmap2 = BitmapFactory.decodeByteArray(photo, 0, photo.length);
+
+			image.setImageBitmap(bitmap2);
+
+			imagesContainer.addView(image, 200, 200); 
+
+			imgList.add(photo);
 			
 		
 		}catch (Exception e){
@@ -237,9 +450,9 @@ public class InventarioActivity extends Activity {
 
 	private void setImgOnDisplay(byte[] photo) {
 		
-		ImageView image = new ImageView(_view.getContext()); 
+		ImageView image = new ImageView(this); 
 
-		Bitmap bitmap = BitmapFactory.decodeByteArray(photo, 0, photo.length);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(photo, 0, photo.length);
 
 		image.setImageBitmap(bitmap);
 
@@ -247,7 +460,7 @@ public class InventarioActivity extends Activity {
 
 		imgList.add(photo);
 
-
+		
 	}
 
 
@@ -308,7 +521,7 @@ public class InventarioActivity extends Activity {
 			InputStream in = getContentResolver().openInputStream(audioUri); 
 
 			byte[] binaryData = readBytes(in);
-
+			
 			setDisplayAudio(binaryData);
 
 
@@ -379,19 +592,19 @@ public class InventarioActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-
+				
 				EditText et = (EditText)findViewById(R.id.MAIN_FORM_NOMBRE_ID ); 
 
 				String nombre = et.getText().toString();
 
 				if(nombre==null||nombre.length()==0){
-
+					
 					String msg = "Debe incluir el nombre del proyecto";
-
+					
 					Toast.makeText(getApplicationContext(), msg ,Toast.LENGTH_LONG).show();
-
+					
 				}else{
-
+					
 					save();
 
 					inventarioController.saveInventario(inventario);
@@ -399,10 +612,11 @@ public class InventarioActivity extends Activity {
 					setResult(1,null);	
 
 					inventario = null;
+					
 					finish();
 
 				}
-
+				
 			}
 
 
@@ -547,9 +761,9 @@ public class InventarioActivity extends Activity {
 		if(media!=null){
 
 			for(byte[] img:media){
-
+				
 				setImgOnDisplay(img);
-
+			
 			}
 
 		}
@@ -580,7 +794,7 @@ public class InventarioActivity extends Activity {
 			data = new HashMap<String,String>();
 
 		}
-
+		
 
 		//	saveData(data, R.id.MAIN_FORM_PROYECTO_ID , Inventario.PROYECTO);
 		//	saveData(data, R.id.MAIN_FORM_PLANTA_ID , Inventario.PLANTA);
@@ -620,6 +834,12 @@ public class InventarioActivity extends Activity {
 		saveData(data, R.id.FLUIDO_ENTRADA_ID , Inventario.FLUIDO_ENTRADA);
 		saveData(data, R.id.FLUIDO_SALIDA_ID , Inventario.FLUIDO_SALIDA);
 		saveData(data, R.id.ESTIMADO_ID , Inventario.ESTIMADO);
+		
+		_lastArea = data.get(Inventario.AREA);
+		_lastEdificio = data.get(Inventario.EDIFICIO);
+		_lastDepartamento = data.get(Inventario.DEPARTAMENTO);
+		_lastPiso= data.get(Inventario.PISO);
+
 		inventario.setData(data);
 		inventario.setImageMedia(imgList);
 		inventario.setAudioMedia(audioList);
@@ -712,31 +932,31 @@ public class InventarioActivity extends Activity {
 		// and then we can return your byte array.
 		return byteBuffer.toByteArray();
 	}
-
+	
 	private void playMp3(byte[] mp3SoundByteArray) {
-		try {
-			// create temp file that will hold byte array
-			File tempMp3 = File.createTempFile("audiotemp", "mp3", getCacheDir());
-			tempMp3.deleteOnExit();
-			FileOutputStream fos = new FileOutputStream(tempMp3);
-			fos.write(mp3SoundByteArray);
-			fos.close();
+	    try {
+	        // create temp file that will hold byte array
+	        File tempMp3 = File.createTempFile("audiotemp", "mp3", getCacheDir());
+	        tempMp3.deleteOnExit();
+	        FileOutputStream fos = new FileOutputStream(tempMp3);
+	        fos.write(mp3SoundByteArray);
+	        fos.close();
 
-			// Tried reusing instance of media player
-			// but that resulted in system crashes...  
-			MediaPlayer mediaPlayer = new MediaPlayer();
+	        // Tried reusing instance of media player
+	        // but that resulted in system crashes...  
+	        MediaPlayer mediaPlayer = new MediaPlayer();
 
-			// Tried passing path directly, but kept getting 
-			// "Prepare failed.: status=0x1"
-			// so using file descriptor instead
-			FileInputStream fis = new FileInputStream(tempMp3);
-			mediaPlayer.setDataSource(fis.getFD());
+	        // Tried passing path directly, but kept getting 
+	        // "Prepare failed.: status=0x1"
+	        // so using file descriptor instead
+	        FileInputStream fis = new FileInputStream(tempMp3);
+	        mediaPlayer.setDataSource(fis.getFD());
 
-			mediaPlayer.prepare();
-			mediaPlayer.start();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
+	        mediaPlayer.prepare();
+	        mediaPlayer.start();
+	    } catch (IOException ex) {
+	        ex.printStackTrace();
+	    }
 	}
 
 

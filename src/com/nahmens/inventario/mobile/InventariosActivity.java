@@ -290,6 +290,8 @@ public class InventariosActivity extends Activity {
 
 				intent.putExtra(InventariosActivity.PROPERTY_KEY , inventario.getId());
 
+				intent.putExtra(InventariosActivity.NEW_INVENTARIO_PROPERTY_KEY , new Boolean(true));
+
 				startActivityForResult(intent, 1);
 			}		
 

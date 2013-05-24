@@ -39,6 +39,7 @@ public class ProyectosActivity extends Activity {
 	
 	private List<String> proyectos;
 
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 

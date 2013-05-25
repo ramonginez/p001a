@@ -9,7 +9,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 
 	private static final String DATABASE_NAME = "inventario.db";
-	private static final int DATABASE_VERSION = 12;
+	private static final int 	DATABASE_VERSION = 13;
 	public static final String TABLE_INVENTARIO = "inventario";
 	public static final String TABLE_DATA = "data";
 	public static final String TABLE_USER = "user";
@@ -17,7 +17,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String TABLE_APP_DATA = "app_data";
 	public static final String TABLE_MEDIA = "media";
 	public static final String TABLE_CHECKIN = "checkin";
+	public static final String TABLE_CAMPO = "campo";
 
+	
 	public static final String CHECKIN_COLUMN_USER 	= "user";
 	public static final String CHECKIN_COLUMN_DATE 	= "time";
 	public static final String CHECKIN_COLUMN_LONGITUDE 	= "longitude";
@@ -35,6 +37,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String DATA_COLUMN_TYPE 	= "type";
 	public static final String DATA_COLUMN_SYNC 	= "sync";
 
+	public static final String CAMPO_COLUMN_ID 		= "id";
+	public static final String CAMPO_COLUMN_VALOR 	= "valor";
 
 
 	// Database creation sql statement
@@ -82,6 +86,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			+ " text not null, " + CHECKIN_COLUMN_LATITUDE
 			+ " text not null);";
 
+	private static final String DATABASE_CREATE_8 = "create table "
+			+ TABLE_CAMPO + "(" + CAMPO_COLUMN_ID
+			+ " text not null, " + CAMPO_COLUMN_VALOR
+			+ " text not null);";
+
 
 	public MySQLiteHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -96,6 +105,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		database.execSQL(DATABASE_CREATE_5);
 		database.execSQL(DATABASE_CREATE_6);
 		database.execSQL(DATABASE_CREATE_7);
+		database.execSQL(DATABASE_CREATE_8);
+		
 
 	}
 
@@ -111,6 +122,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_APP_DATA);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_MEDIA);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHECKIN);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_CAMPO);
+
 
 		onCreate(db);
 	}

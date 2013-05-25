@@ -28,5 +28,6 @@ public interface InventarioController {
 	public void syncInventario(String id) throws Exception;
 	
 	public void checkin(String user, String time, String latitude, String longitude) throws Exception;
-	
+
+	public List<String> getAutoCompleteValues(String key);
 }

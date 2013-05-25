@@ -542,6 +542,54 @@ public class InventarioDataSource {
 		}
 	}
 
+	public void setCampoTable(JSONArray campoArray) throws JSONException {
+
+		if(campoArray==null){
+
+			return;
+		}
+
+		try{
+
+			open();
+
+			//database.beginTransaction();
+
+			database.delete(MySQLiteHelper.TABLE_CAMPO, null, null);
+
+			for (int i = 0; i < campoArray.length(); ++i) {
+
+
+				JSONObject campoObject = campoArray.getJSONObject(i);
+
+				String id = campoObject.getString(InventarioControllerImpl.SERVER_RESPONSE_CAMPO_ID_KEY);
+						
+				String value = campoObject.getString(InventarioControllerImpl.SERVER_RESPONSE_CAMPO_VALUE_KEY);
+			
+				Log.i( "setCampoTable", "id:"+id +", pwd:"+value);
+
+				ContentValues values = new ContentValues();
+
+				values.put(MySQLiteHelper.CAMPO_COLUMN_ID,id);
+
+				values.put(MySQLiteHelper.CAMPO_COLUMN_VALOR,value);
+
+				database.insert(MySQLiteHelper.TABLE_CAMPO, null,values);
+
+				Log.i( "setCampoTable", "inserted!");
+
+
+			}
+
+			//database.endTransaction();
+
+			//database.setTransactionSuccessful();
+
+		}finally{
+
+			close();
+		}
+	}
 
 	private void setInventarioMedia(String id, List<byte[]> media, String type) {
 
@@ -861,6 +909,53 @@ public class InventarioDataSource {
 
 
 		}finally{
+			close();
+		}
+	}
+
+	public HashMap<String, List<String>> getAutoComplete() {
+		try{
+
+			open();
+
+			String[] allColumns2 = { MySQLiteHelper.CAMPO_COLUMN_ID, MySQLiteHelper.CAMPO_COLUMN_VALOR};
+
+			HashMap<String, List<String>> map = new HashMap<String,List<String>>();
+
+			Cursor cursor = database.query( MySQLiteHelper.TABLE_CAMPO,
+					allColumns2, null, null, null, null, null);
+
+			cursor.moveToFirst();
+
+			Log.i( "getCamposAutoComplete", "search");
+
+			while (!cursor.isAfterLast()) {
+
+				String id = cursor.getString(0);
+				
+				String value = cursor.getString(1);
+				
+				List<String> values = map.get(id);
+				
+				if(values==null){
+					
+					values = new ArrayList<String>();
+				}
+				
+				values.add(value);
+				
+				map.put(id, values);
+				
+				cursor.moveToNext();
+
+			}
+
+			cursor.close();
+
+			return  map;
+
+		}finally{
+
 			close();
 		}
 	}

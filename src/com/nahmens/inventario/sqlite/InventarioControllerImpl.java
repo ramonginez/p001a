@@ -39,16 +39,39 @@ public class  InventarioControllerImpl implements InventarioController {
 	private InventarioDataSource dataSource;
 
 	public static final String SERVER_RESPONSE_USER_LIST_KEY = "users";
+	public static final String SERVER_RESPONSE_CAMPO_LIST_KEY = "campos";
+
 	public static final String SERVER_RESPONSE_USER_ID_KEY = "USERNAME";
 	public static final String SERVER_RESPONSE_USER_PWD_KEY = "PASSWORD";
+
+	public static final String SERVER_RESPONSE_CAMPO_ID_KEY = "ASSET_ID";
+	public static final String SERVER_RESPONSE_CAMPO_VALUE_KEY = "TYPE_NAME";
+
+
+
 	//private static final String DEFAULT_SERVER = "http://vasa.zentyal.me/webserver/";
-	//private static final String DEFAULT_SERVER = "http://192.168.1.104:8888/webserver/";
-	private static final String DEFAULT_SERVER = "http://200.8.226.27/webserver/";
+	private static final String DEFAULT_SERVER = "http://192.168.1.109:8888/webserver/";
+	//private static final String DEFAULT_SERVER = "http://200.8.226.27/webserver/";
+	
+	private HashMap<String, List<String>>  CAMPO_AUTO_COMPLETE_VALUES; 
 	
 //
 	public InventarioControllerImpl(Context context){
 
 		dataSource = InventarioDataSource.getInstance(context);
+		
+		this.loadAutoComplteValues();
+	}
+
+	private void loadAutoComplteValues() {
+		
+		CAMPO_AUTO_COMPLETE_VALUES =  dataSource.getAutoComplete();
+
+	}
+	
+	public  List<String>  getAutoCompleteValues(String key){
+		
+		return CAMPO_AUTO_COMPLETE_VALUES.get(key);
 	}
 
 	@Override
@@ -130,8 +153,14 @@ public class  InventarioControllerImpl implements InventarioController {
 		JSONObject object = getValuesFromServer();
 
 		JSONArray userArray = object.getJSONArray(SERVER_RESPONSE_USER_LIST_KEY);
+		
+		JSONArray campoArray = object.getJSONArray(SERVER_RESPONSE_CAMPO_LIST_KEY);
 
 		dataSource.setUserTable(userArray);
+
+		dataSource.setCampoTable(campoArray);
+
+		this.loadAutoComplteValues();
 
 	}
 

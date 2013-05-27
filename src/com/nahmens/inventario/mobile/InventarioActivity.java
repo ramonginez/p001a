@@ -31,6 +31,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -48,6 +49,7 @@ import android.text.TextWatcher;
 
 import com.nahmens.inventario.Inventario;
 import com.nahmens.inventario.sqlite.InventarioControllerImpl;
+import com.nahmens.inventario.sqlite.InventarioDataSource;
 import com.nahmens.inventario.utils.InstantAutoComplete;
 
 @SuppressLint("ParserError")
@@ -171,8 +173,10 @@ public class InventarioActivity extends Activity {
 	private void setAutocompleteCampos(){
 
 		TableLayout mTableLayout =  (TableLayout) findViewById( R.id.tableLayoutActivo);
+		InventarioDataSource invDB = InventarioDataSource.getInstance(context);
+		
+		HashMap<String, List<String>> mapeo = invDB.getAutoComplete();
 
-		ArrayList<TextView> mTextViewList = new ArrayList<TextView>();
 
 		//Iteramos por la tabla
 		for( int i = 0; i < mTableLayout.getChildCount(); i++ ){
@@ -184,12 +188,30 @@ public class InventarioActivity extends Activity {
 			//Iteramos por cada fila de la tabla
 			for(int j = 0; j <  mTableRow.getChildCount(); j++){
 
-				if( mTableRow.getChildAt( j ) instanceof TextView ){
+				if( mTableRow.getChildAt( j ) instanceof AutoCompleteTextView){
 
-					TextView mTextView = (TextView) mTableRow.getChildAt( j );
+					InstantAutoComplete mEditText = (InstantAutoComplete) mTableRow.getChildAt( j );
+					String idEditText = mEditText.getTag().toString();
 
-					mTextViewList.add(mTextView);
-					Log.e("lista"," " + mTextView.getText());
+					if(idEditText!=null){
+						
+						if(mapeo.containsKey(idEditText)){
+							List<String> valores = mapeo.get(idEditText);
+							
+							Log.i("autocomplete de campos"," valores: " + valores.toString() + " campo:"+idEditText);
+							
+							ArrayAdapter<String> adapter = 
+									new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, valores);
+							
+							mEditText.setAdapter(adapter);
+							mEditText.setThreshold(1);
+						}
+						
+						
+					}else{
+						Log.e("InventarioActivity linea 192"," Asegurate de crear un tag por cada Edit Text o AutoCompleteTextView en el layout activity_inventario.xml!!");
+					}
+					
 				}
 			}
 

@@ -164,6 +164,7 @@
             </LinearLayout>
 
             <TableLayout
+                android:id="@+id/tableLayoutActivo"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" >
 
@@ -359,7 +360,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/MAIN_FORM_PAIS_ID"
+                        android:id="@+id/MAIN_FORM_PAIS_ORIGEN_ID"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.2"
@@ -590,7 +591,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/COMPLETO_ID"
+                        android:id="@+id/MAIN_FORM_COMPLETO_CON_ID"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.7"
@@ -653,7 +654,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/CONSTRUIDO_E_ID"
+                        android:id="@+id/MAIN_FORM_CONSTRUIDO_E_ID"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.2"
@@ -795,7 +796,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/FLUIDO_ID"
+                        android:id="@+id/MAIN_FORM_FLUIDO_ID"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.7"
@@ -822,7 +823,7 @@
                         android:text="@string/MAIN_FORM_FLUIDO_ENTRADA" />
 
                     <EditText
-                        android:id="@+id/FLUIDO_ENTRADA_ID"
+                        android:id="@+id/MAIN_FORM_FLUIDO_ENTRADA_ID"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.15"
@@ -842,7 +843,7 @@
                         android:text="@string/MAIN_FORM_FLUIDO_SALIDA" />
 
                     <EditText
-                        android:id="@+id/FLUIDO_SALIDA_ID"
+                        android:id="@+id/MAIN_FORM_FLUIDO_SALIDA_ID"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.15"
@@ -871,7 +872,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/ESTIMADO_ID"
+                        android:id="@+id/MAIN_FORM_ESTIMADO_ID"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.7"

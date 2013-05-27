@@ -227,7 +227,7 @@ public class InventarioActivity extends Activity {
 						}
 
 					}else{
-						Log.e("InventarioActivity linea 192"," Asegurate de crear un tag por cada Edit Text o AutoCompleteTextView en el layout activity_inventario.xml!!");
+						Log.e("InventarioActivity linea 209"," Asegurate de crear un tag por cada Edit Text o AutoCompleteTextView en el layout activity_inventario.xml!!");
 					}
 				}
 			}

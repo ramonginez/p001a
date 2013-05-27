@@ -10,34 +10,39 @@ import android.widget.AutoCompleteTextView;
  */
 public class InstantAutoComplete extends AutoCompleteTextView {
 
-    public InstantAutoComplete(Context context) {
-        super(context);
-    }
+	public InstantAutoComplete(Context context) {
+		super(context);
+	}
 
-    public InstantAutoComplete(Context arg0, AttributeSet arg1) {
-        super(arg0, arg1);
-    }
+	public InstantAutoComplete(Context arg0, AttributeSet arg1) {
+		super(arg0, arg1);
+	}
 
-    public InstantAutoComplete(Context arg0, AttributeSet arg1, int arg2) {
-        super(arg0, arg1, arg2);
-    }
+	public InstantAutoComplete(Context arg0, AttributeSet arg1, int arg2) {
+		super(arg0, arg1, arg2);
+	}
 
-    /*
-     * En esta funcion se retorna siempre true, para que se despliegue la
-     * lista sin importar que se haya tipeado algo en el campo o no.
-     */
-    @Override
-    public boolean enoughToFilter() {
-        return true;
-    }
+	/*
+	 * En esta funcion se retorna siempre true, para que se despliegue la
+	 * lista sin importar que se haya tipeado algo en el campo o no.
+	 */
+	@Override
+	public boolean enoughToFilter() {
+		return true;
+	}
 
-    @Override
-    protected void onFocusChanged(boolean focused, int direction,
-            Rect previouslyFocusedRect) {
-        super.onFocusChanged(focused, direction, previouslyFocusedRect);
-        if (focused) {
-            performFiltering(getText(), 0);
-        }
-    }
+	@Override
+	protected void onFocusChanged(boolean focused, int direction,
+			Rect previouslyFocusedRect) {
+		super.onFocusChanged(focused, direction, previouslyFocusedRect);
+
+		try{
+			if (focused) {
+				performFiltering(getText(), 0);
+			}
+		}catch (Exception e) {
+			// TODO: ignorar
+		}
+	}
 
 }

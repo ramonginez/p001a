@@ -58,11 +58,12 @@
             </LinearLayout>
 
             <TableLayout
-                android:id="@+id/tableLayout1"
+                android:id="@+id/tableLayoutUbicacion"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" >
 
                 <TableRow
+                    android:id="@+id/tableRowUbicacion1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dip"
@@ -77,14 +78,14 @@
                         android:text="@string/MAIN_FORM_AREA"
                         android:textStyle="bold" />
 
-                    <EditText
+                    <com.nahmens.inventario.utils.InstantAutoComplete
                         android:id="@+id/MAIN_FORM_AREA_ID"
                         android:tag="MAIN_FORM_AREA_ID"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.2"
                         android:inputType="text" >
-                    </EditText>
+                    </com.nahmens.inventario.utils.InstantAutoComplete>
 
                     <!-- Edificio -->
 
@@ -96,18 +97,18 @@
                         android:text="@string/MAIN_FORM_EDIFICIO"
                         android:textStyle="bold" />
 
-                    <EditText
+                    <com.nahmens.inventario.utils.InstantAutoComplete
                         android:id="@+id/MAIN_FORM_EDIFICIO_ID"
                         android:tag="MAIN_FORM_EDIFICIO_ID"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.2"
                         android:inputType="text" >
-                    </EditText>
+                    </com.nahmens.inventario.utils.InstantAutoComplete>
                 </TableRow>
 
                 <TableRow
-                    android:id="@+id/tableRow3"
+                    android:id="@+id/tableRowUbicacion2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dip"
@@ -122,14 +123,14 @@
                         android:text="@string/MAIN_FORM_DEPARTAMENTO"
                         android:textStyle="bold" />
 
-                    <EditText
+                    <com.nahmens.inventario.utils.InstantAutoComplete
                         android:id="@+id/MAIN_FORM_DEPARTAMENTO_ID"
                         android:tag="MAIN_FORM_DEPARTAMENTO_ID"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.2"
                         android:inputType="text" >
-                    </EditText>
+                    </com.nahmens.inventario.utils.InstantAutoComplete>
 
                     <!-- Piso -->
 
@@ -141,14 +142,14 @@
                         android:text="@string/MAIN_FORM_PISO"
                         android:textStyle="bold" />
 
-                    <EditText
+                    <com.nahmens.inventario.utils.InstantAutoComplete
                         android:id="@+id/MAIN_FORM_PISO_ID"
                         android:tag="MAIN_FORM_PISO_ID"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.2"
                         android:inputType="text" >
-                    </EditText>
+                    </com.nahmens.inventario.utils.InstantAutoComplete>
                 </TableRow>
             </TableLayout>
 

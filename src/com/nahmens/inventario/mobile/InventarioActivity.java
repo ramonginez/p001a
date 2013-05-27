@@ -156,7 +156,20 @@ public class InventarioActivity extends Activity {
 		});
 
 		setAutocompleteTipo(nombre);
-		setAutocompleteCampos();
+
+		//Obtenemos referencia a la tabla que contiene los campos Activo
+		TableLayout mTableLayoutActivo =  (TableLayout) findViewById( R.id.tableLayoutActivo);
+
+		//Obtenemos referencia a la tabla que contiene los campos ubicacion
+		TableLayout mTableLayoutUbicacion =  (TableLayout) findViewById( R.id.tableLayoutUbicacion);
+		
+		//Obtenemos lista de valores para los campos 
+		InventarioDataSource invDB = InventarioDataSource.getInstance(context);
+		HashMap<String, List<String>> mapeo = invDB.getAutoComplete();
+		
+		//Asignamos autocomplete a los campos en las tablas activo y ubicacion
+		setAutocompleteCampos(mTableLayoutActivo, mapeo);
+		setAutocompleteCampos(mTableLayoutUbicacion, mapeo);
 
 	}
 
@@ -170,54 +183,55 @@ public class InventarioActivity extends Activity {
 	}
 
 
-	private void setAutocompleteCampos(){
+	/*Funcion que muestra lista de sugerencias sobre todos los campos
+	 * segun corresponda.
+	 */
+	private void setAutocompleteCampos(TableLayout mTableLayout, HashMap<String, List<String>> mapeo){
 
-		TableLayout mTableLayout =  (TableLayout) findViewById( R.id.tableLayoutActivo);
-		InventarioDataSource invDB = InventarioDataSource.getInstance(context);
-		
-		HashMap<String, List<String>> mapeo = invDB.getAutoComplete();
+		int idTableRow = 0; //Id de la fila
+		TableRow mTableRow = null; //Referencia a la fila
+		InstantAutoComplete mEditText = null; //Referencia al campo
+		String idEditText = null; //Referencia al tag (id) del campo
+		List<String> valores = null; //Referencia a la lista de valores por cada campo
+		ArrayAdapter<String> adapter = null; //Adaptador que muestra los valores en una lista
 
-
-		//Iteramos por la tabla
+		//Iteramos por la tabla 
 		for( int i = 0; i < mTableLayout.getChildCount(); i++ ){
 
-			int idTableRow = mTableLayout.getChildAt( i ).getId();
-			TableRow mTableRow =  (TableRow) findViewById(idTableRow);
-
+			idTableRow = mTableLayout.getChildAt( i ).getId();
+			mTableRow =  (TableRow) findViewById(idTableRow);
 
 			//Iteramos por cada fila de la tabla
 			for(int j = 0; j <  mTableRow.getChildCount(); j++){
 
 				if( mTableRow.getChildAt( j ) instanceof AutoCompleteTextView){
 
-					InstantAutoComplete mEditText = (InstantAutoComplete) mTableRow.getChildAt( j );
-					String idEditText = mEditText.getTag().toString();
+					mEditText = (InstantAutoComplete) mTableRow.getChildAt( j );
+
+					//Obtenemos el tag del campo para poder obtener su ID
+					idEditText = mEditText.getTag().toString();
 
 					if(idEditText!=null){
-						
+
+						//Para este campo buscamos en la lista sus valores.
 						if(mapeo.containsKey(idEditText)){
-							List<String> valores = mapeo.get(idEditText);
-							
+							valores = mapeo.get(idEditText);
+
 							Log.i("autocomplete de campos"," valores: " + valores.toString() + " campo:"+idEditText);
-							
-							ArrayAdapter<String> adapter = 
-									new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, valores);
-							
+
+							//Creamos un adapter que se encargara de mostrar la lista de valores por campo
+							adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, valores);
+
 							mEditText.setAdapter(adapter);
 							mEditText.setThreshold(1);
 						}
-						
-						
+
 					}else{
 						Log.e("InventarioActivity linea 192"," Asegurate de crear un tag por cada Edit Text o AutoCompleteTextView en el layout activity_inventario.xml!!");
 					}
-					
 				}
 			}
-
-
 		}
-
 	}
 
 

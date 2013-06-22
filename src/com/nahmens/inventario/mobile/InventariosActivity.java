@@ -42,6 +42,7 @@ public class InventariosActivity extends Activity {
 	public static final  String PROPERTY_PROJECT_KEY = "pProject";
 	public static final  String PROPERTY_KEY = "pk";
 	public static final  String NEW_INVENTARIO_PROPERTY_KEY = "new";
+	public static final  String UID_INVENTARIO_PROPERTY_KEY = "uid";
 
 
 	@Override
@@ -54,9 +55,9 @@ public class InventariosActivity extends Activity {
 		Bundle bundle = getIntent().getExtras();
 
 		uid = (String) bundle.get(InventariosActivity.PROPERTY_KEY);
-		
+
 		proyecto = (String) bundle.get(InventariosActivity.PROPERTY_PROJECT_KEY);
-		
+
 		controller = new com.nahmens.inventario.sqlite.InventarioControllerImpl(this);
 
 		setButon();
@@ -67,9 +68,9 @@ public class InventariosActivity extends Activity {
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
-	    super.onConfigurationChanged(newConfig);
-	 
-	   //Do nothing
+		super.onConfigurationChanged(newConfig);
+
+		//Do nothing
 	}
 
 
@@ -98,7 +99,7 @@ public class InventariosActivity extends Activity {
 		TextView tv1 = (TextView)findViewById(R.id.INVENTARIOS_PROYECTO_ID ); 
 
 		tv1.setText(proyecto);
-		
+
 		TableLayout tl = (TableLayout) findViewById(R.id.LISTA_INVENTARIO_ID);
 
 		listMenu = (LinearLayout) findViewById(R.id.LISTA_INVENTARIO_ID);
@@ -126,10 +127,10 @@ public class InventariosActivity extends Activity {
 				String display = data.get(Inventario.NOMBRE);
 
 				if(dProyecto==null||!dProyecto.equals(proyecto)||display==null){
-					
+
 					continue;
 				}
-				
+
 				String lastSaved = data.get(Inventario.LAST_SAVED);
 				String lastSync = data.get(Inventario.LAST_SYNC);
 
@@ -234,9 +235,9 @@ public class InventariosActivity extends Activity {
 
 
 		Button regresar =(Button) findViewById(R.id.BTN_REGRESAR_ID);
-		
+
 		regresar.setOnClickListener( new ButtonRegresarClickHandler() );
-		
+
 		buttonNuevo = (Button) findViewById(R.id.BTN_NUEVO_ID);
 
 		buttonNuevo.setOnClickListener( new ButtonNuevoClickHandler() );
@@ -248,13 +249,13 @@ public class InventariosActivity extends Activity {
 		public void onClick( View view ) {
 
 			Log.i( "Regresar", "onClick()" );
-			
+
 			setResult(1,null);	
 
 			finish();
 
 		}
-		
+
 	}
 
 	public class ButtonNuevoClickHandler implements View.OnClickListener 
@@ -263,37 +264,16 @@ public class InventariosActivity extends Activity {
 
 			Log.i( "Lista nuevo", "onClick()" );
 
-			EditText et = (EditText)findViewById(R.id.INVENTARIOS_NOMBRE_ID ); 
+			Intent intent = new Intent(InventariosActivity.this,InventarioActivity.class);
 
-			String nombre = et.getText().toString();
+			intent.putExtra(InventariosActivity.UID_INVENTARIO_PROPERTY_KEY , uid);
 
+			intent.putExtra(InventariosActivity.PROPERTY_PROJECT_KEY , proyecto);
 
-			if(nombre==null||nombre.length()==0||proyecto==null||proyecto.length()==0){
+			intent.putExtra(InventariosActivity.NEW_INVENTARIO_PROPERTY_KEY , Boolean.TRUE);
 
-				Toast.makeText(getApplicationContext(), "Debe incluir Nombre",Toast.LENGTH_LONG).show();
+			startActivityForResult(intent, 1);
 
-			}else{
-
-				Inventario inventario = controller.createNewInventario(uid);
-
-				HashMap<String,String> data = inventario.getData();
-
-				data.put(Inventario.PROYECTO, proyecto);
-
-				data.put(Inventario.NOMBRE, nombre);
-
-				inventario.setData(data);
-
-				controller.saveInventario(inventario);
-
-				Intent intent = new Intent(InventariosActivity.this,InventarioActivity.class);
-
-				intent.putExtra(InventariosActivity.PROPERTY_KEY , inventario.getId());
-
-				intent.putExtra(InventariosActivity.NEW_INVENTARIO_PROPERTY_KEY , new Boolean(true));
-
-				startActivityForResult(intent, 1);
-			}		
 
 
 		}
@@ -403,9 +383,9 @@ public class InventariosActivity extends Activity {
 					// current activity
 
 					try {
-					
+
 						controller.syncInventario(pid);
-					
+
 						setList();
 						Toast.makeText(getApplicationContext(), "Sincronizaci—n exitosa!",Toast.LENGTH_LONG).show();
 
@@ -414,7 +394,7 @@ public class InventariosActivity extends Activity {
 						Toast.makeText(getApplicationContext(), "Fallo la sincronizaci—n, intente otra vez!",Toast.LENGTH_LONG).show();
 
 					}
-					
+
 				}
 			})
 			.setNegativeButton("No",new DialogInterface.OnClickListener() {

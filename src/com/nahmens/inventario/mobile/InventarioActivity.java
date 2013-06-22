@@ -68,6 +68,9 @@ public class InventarioActivity extends Activity {
 	private List<byte[]> audioList = new ArrayList<byte[]>();
 	private Inventario inventario = null;
 	private Boolean isNew = false;
+	private String proyecto = null;
+	private String uid = null;
+
 	//Static hashmap not working investigar!
 	static String _lastArea;
 	static String _lastEdificio;
@@ -82,22 +85,33 @@ public class InventarioActivity extends Activity {
 
 		Bundle bundle = getIntent().getExtras();
 
-		String inventarioId = (String) bundle.get(InventariosActivity.PROPERTY_KEY);
 
 		if(bundle.get(InventariosActivity.NEW_INVENTARIO_PROPERTY_KEY)!=null){
 
 			isNew = (Boolean) bundle.get(InventariosActivity.NEW_INVENTARIO_PROPERTY_KEY);
 
+			if(bundle.get(InventariosActivity.PROPERTY_PROJECT_KEY)!=null){
+
+				proyecto = (String) bundle.get(InventariosActivity.PROPERTY_PROJECT_KEY);
+
+			}
+			
+			if(bundle.get(InventariosActivity.UID_INVENTARIO_PROPERTY_KEY)!=null){
+
+				uid = (String) bundle.get(InventariosActivity.UID_INVENTARIO_PROPERTY_KEY);
+
+			}
+			
 		}
+		
 
-
+		
 		inventarioController = new com.nahmens.inventario.sqlite.InventarioControllerImpl(this);
 
-		inventario = inventarioController.getInventario(inventarioId);
 
 		if(isNew){
 
-			HashMap<String,String>data = inventario.getData();
+			HashMap<String,String>data = new HashMap<String,String>();
 
 
 			if(_lastArea!=null){
@@ -120,17 +134,28 @@ public class InventarioActivity extends Activity {
 				data.put(Inventario.PISO, _lastPiso);
 			}
 
+			setText(data, R.id.MAIN_FORM_AREA_ID , Inventario.AREA);
+			setText(data, R.id.MAIN_FORM_EDIFICIO_ID , Inventario.EDIFICIO);
+			setText(data, R.id.MAIN_FORM_DEPARTAMENTO_ID , Inventario.DEPARTAMENTO);
+			setText(data, R.id.MAIN_FORM_PISO_ID , Inventario.PISO);
+		
+		}else{
+			
+			String inventarioId = (String) bundle.get(InventariosActivity.PROPERTY_KEY);
 
-			inventario.setData(data);
+			inventario = inventarioController.getInventario(inventarioId);
+
+			setPicture();
+
+			setAudio();
+			
+			setProject();
+
 		}
 
-		setPicture();
-
-		setAudio();
 
 		setGuardar();
 
-		setProject();
 
 		//Asignamos un listener al campo nombre_id para ajustar los valores del tipo segun
 		//corresponda.
@@ -671,6 +696,20 @@ public class InventarioActivity extends Activity {
 
 				}else{
 
+					if(isNew){
+						
+						inventario = inventarioController.createNewInventario(uid);
+
+						HashMap<String,String> data = inventario.getData();
+
+						data.put(Inventario.PROYECTO, proyecto);
+
+						inventario.setData(data);
+
+						isNew = false;
+
+					}
+					
 					save();
 
 					inventarioController.saveInventario(inventario);

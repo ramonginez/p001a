@@ -1,1094 +1,1282 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrlView"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <ScrollView
-        android:id="@+id/ScrlView"
+    <TableLayout
+        android:id="@+id/tableLayoutActivo"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="wrap_content" >
 
-        <LinearLayout
+        <TableRow
+            android:id="@+id/tableRowUbicacion1"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content" >
 
             <!-- Title -->
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="#B0B0B0"
                 android:gravity="center"
                 android:paddingBottom="15sp"
                 android:paddingTop="15sp"
                 android:text="@string/MAIN_FORM_TITLE"
                 android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/MAIN_FORM_PROYECTO_PLANTA_ID"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="10sp"
-                    android:paddingLeft="5dip"
-                    android:paddingTop="10sp"
-                    android:textSize="15dip"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#B0B0B0"
-                    android:paddingLeft="5dip"
-                    android:text="@string/MAIN_FORM_UBICACION"
-                    android:textSize="15dip"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <TableLayout
-                android:id="@+id/tableLayoutUbicacion"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <TableRow
-                    android:id="@+id/tableRowUbicacion1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Area -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/MAIN_FORM_AREA"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_AREA_ID"
-                        android:tag="MAIN_FORM_AREA_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-
-                    <!-- Edificio -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:paddingLeft="10dip"
-                        android:text="@string/MAIN_FORM_EDIFICIO"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_EDIFICIO_ID"
-                        android:tag="MAIN_FORM_EDIFICIO_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowUbicacion2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Departamento -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/MAIN_FORM_DEPARTAMENTO"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_DEPARTAMENTO_ID"
-                        android:tag="MAIN_FORM_DEPARTAMENTO_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-
-                    <!-- Piso -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:paddingLeft="10dip"
-                        android:text="@string/MAIN_FORM_PISO"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_PISO_ID"
-                        android:tag="MAIN_FORM_PISO_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-                </TableRow>
-            </TableLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#B0B0B0"
-                    android:paddingLeft="5dip"
-                    android:text="@string/MAIN_FORM_ACTIVO"
-                    android:textSize="15dip"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <TableLayout
-                android:id="@+id/tableLayoutActivo"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <TableRow
-                    android:id="@+id/tableRowActivo1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Nombre -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.30"
-                        android:text="@string/MAIN_FORM_NOMBRE"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_NOMBRE_ID"
-                        android:tag="MAIN_FORM_NOMBRE_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.70"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Codigo vasa -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/MAIN_FORM_CODIGO_VASA"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_CODIGO_VASA_ID"
-                        android:tag="MAIN_FORM_CODIGO_VASA_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-
-                    <!-- Codigo cliente -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:paddingLeft="10dip"
-                        android:text="@string/MAIN_FORM_CODIGO_CLIENTE"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_CODIGO_CLIENTE_ID"
-                        android:tag="MAIN_FORM_CODIGO_CLIENTE_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Marca -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/MAIN_FORM_MARCA"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_MARCA_ID"
-                        android:tag="MAIN_FORM_MARCA_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-
-                    <!-- MODELO -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:paddingLeft="10dip"
-                        android:text="@string/MAIN_FORM_MODELO"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_MODELO_ID"
-                        android:tag="MAIN_FORM_MODELO_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- SERIAL -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/MAIN_FORM_SERIAL"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_SERIAL_ID"
-                        android:tag="MAIN_FORM_SERIAL_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-
-                    <!-- TIPO -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:paddingLeft="10dip"
-                        android:text="@string/MAIN_FORM_TIPO"
-                        android:textStyle="bold" />
-
-                  
-                    <!-- OJO -->
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-					    android:id="@+id/MAIN_FORM_TIPO_ID"
-					    android:tag="MAIN_FORM_TIPO_ID"
-					    android:layout_width="0dp"
-					    android:layout_weight="0.2"
-					    android:layout_height="wrap_content" />
-                  <!--    <EditText
-                        android:id="@+id/MAIN_FORM_TIPO_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </EditText> -->
-                    
-              		</TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Fabricante -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/MAIN_FORM_FABRICANTE"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_FABRICANTE_ID"
-                        android:tag="MAIN_FORM_FABRICANTE_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-
-                    <!-- PAIS -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:paddingLeft="10dip"
-                        android:text="@string/MAIN_FORM_PAIS"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_PAIS_ORIGEN_ID"
-                        android:tag="MAIN_FORM_PAIS_ORIGEN_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- CODIGO_PLANTA -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/MAIN_FORM_CODIGO_PLANTA"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_CODIGO_PLANTA_ID"
-                        android:tag="MAIN_FORM_CODIGO_PLANTA_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-
-                    <!-- CAPACIDAD -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:paddingLeft="10dip"
-                        android:text="@string/MAIN_FORM_CAPACIDAD"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_CAPACIDAD_ID"
-                        android:tag="MAIN_FORM_CAPACIDAD_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- DIMENCIONES -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:text="@string/MAIN_FORM_DIMENCIONES"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_DIMENSIONES_PUL_ID"
-                        android:tag="MAIN_FORM_DIMENSIONES_PUL_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.08"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.1"
-                        android:text="@string/MAIN_FORM_DIMENSIONES_PUL" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.04"
-                        android:text="@string/MAIN_FORM_DIMENSIONES_L" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_DIMENSIONES_L_ID"
-                        android:tag="MAIN_FORM_DIMENSIONES_L_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.1"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.05"
-                        android:text="@string/MAIN_FORM_DIMENCIONES_M" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.04"
-                        android:text="@string/MAIN_FORM_DIMENSIONES_A" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_DIMENSIONES_A_ID"
-                        android:tag="MAIN_FORM_DIMENSIONES_A_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.1"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.05"
-                        android:text="@string/MAIN_FORM_DIMENCIONES_M" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.05"
-                        android:text="@string/MAIN_FORM_DIMENSIONES_H" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_DIMENSIONES_H_ID"
-                        android:tag="MAIN_FORM_DIMENSIONES_H_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.1"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.05"
-                        android:text="@string/MAIN_FORM_DIMENCIONES_M" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Accionado por -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="@string/MAIN_FORM_ACCIONADO"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/ACCIONADO_LIST_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:entries="@array/ACCIONADO_POR"
-                        android:prompt="@string/ACCIONADO_POR_PROMPT" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.1"
-                        android:text="@string/MAIN_FORM_ACCIONADO_DE"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_ACCIONADO_DE_ID"
-                        android:tag="MAIN_FORM_ACCIONADO_DE_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-
-                    <RadioGroup
-                        android:id="@+id/ACCIONADO_RADIO_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:orientation="horizontal" >
-
-                        <RadioButton
-                            android:id="@+id/HP"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="true"
-                            android:text="@string/MAIN_FORM_MOTOR_HP" />
-
-                        <RadioButton
-                            android:id="@+id/KW"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/MAIN_FORM_MOTOR_KW" />
-                    </RadioGroup>
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_ACCIONADO_POR_ID"
-                        android:tag="MAIN_FORM_ACCIONADO_POR_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Completo con -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/COMPLETO"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_COMPLETO_CON_ID"
-                        android:tag="MAIN_FORM_COMPLETO_CON_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Recubierto con -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/RECUBIERTO"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/RECUBIERTO_CON_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:entries="@array/RECUBIERTO_CON"
-                        android:prompt="@string/RECUBIERTO" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Construido con -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/CONSTRUIDO"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/CONSTRUIDO_CON_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:entries="@array/CONSTRUIDO_CON"
-                        android:prompt="@string/CONSTRUIDO" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.08"
-                        android:text="@string/CONSTRUIDO_E"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_CONSTRUIDO_E_ID"
-                        android:tag="MAIN_FORM_CONSTRUIDO_E_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.1"
-                        android:text="@string/CONSTRUIDO_MM"
-                        android:textStyle="bold" />
-                </TableRow>
-
-                               
-                <TableRow
-                    android:id="@+id/tableRowActivo13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Eje de la Bomba  -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/EJE_BOMBA"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/EJE_BOMBA_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:entries="@array/EJE_BOMBA"
-                        android:prompt="@string/EJE_BOMBA" />
-
-                </TableRow>
-                
-                <TableRow
-                    android:id="@+id/tableRowActivo14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Montado sobre -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/MONTADO"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/MONTADO_SOBRE_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:entries="@array/MONTADO_SOBRE"
-                        android:prompt="@string/MONTADO" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- CONDICION -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/CONDICION"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/CONDICION_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:entries="@array/CONDICION_VALUE"
-                        android:prompt="@string/CONDICION" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Funcionando -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/MAIN_FORM_ESTADO_FUNCIONANDO"
-                        android:textStyle="bold" />
-
-                    <RadioGroup
-                        android:id="@+id/FUNCIONANDO_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:orientation="horizontal" >
-
-                        <RadioButton
-                            android:id="@+id/FUNCIONANDO_SI_ID"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="true"
-                            android:text="@string/MAIN_FORM_ESTADO_FUNCIONANDO_SI" />
-
-                        <RadioButton
-                            android:id="@+id/FUNCIONANDO_NO_ID"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/MAIN_FORM_ESTADO_FUNCIONANDO_NO" />
-                    </RadioGroup>
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Funcionando -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/MAIN_FORM_FLUIDO"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_FLUIDO_ID"
-                        android:tag="MAIN_FORM_FLUIDO_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/VOID" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.135"
-                        android:text="@string/MAIN_FORM_FLUIDO_ENTRADA" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_FLUIDO_ENTRADA_ID"
-                        android:tag="MAIN_FORM_FLUIDO_ENTRADA_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.15"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.075"
-                        android:text="@string/MAIN_FORM_DIMENSIONES_PUL" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.125"
-                        android:text="@string/MAIN_FORM_FLUIDO_SALIDA" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_FLUIDO_SALIDA_ID"
-                        android:tag="MAIN_FORM_FLUIDO_SALIDA_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.15"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.075"
-                        android:text="@string/MAIN_FORM_DIMENSIONES_PUL" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-                    
-                    
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/MAIN_FORM_ESTIMADO"
-                        android:textStyle="bold" />
-
-                    <com.nahmens.inventario.utils.InstantAutoComplete
-                        android:id="@+id/MAIN_FORM_ESTIMADO_ID"
-                        android:tag="MAIN_FORM_ESTIMADO_ID"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:inputType="text" >
-                    </com.nahmens.inventario.utils.InstantAutoComplete>
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Audio -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/AudioBtn"
-                        android:textStyle="bold" />
-
-                    <ImageButton
-                        android:id="@+id/audioBtn"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:src="@drawable/voice" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip" >
-
-                    <HorizontalScrollView
-                        android:id="@+id/audioScroll"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content" >
-
-                        <LinearLayout
-                            android:id="@+id/audio"
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:orientation="horizontal" >
-                        </LinearLayout>
-                    </HorizontalScrollView>
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo22"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:weightSum="1.0" >
-
-                    <!-- Foto -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="@string/MAIN_FORM_FOTO"
-                        android:textStyle="bold" />
-
-                    <ImageButton
-                        android:id="@+id/picBtn"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:src="@drawable/capture" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRowActivo23"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip" >
-
-                    <HorizontalScrollView
-                        android:id="@+id/scroll"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content" >
-
-                        <LinearLayout
-                            android:id="@+id/images"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal" >
-                        </LinearLayout>
-                    </HorizontalScrollView>
-                </TableRow>
-            </TableLayout>
-
-            <Button
-                android:id="@+id/GUARDAR"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:onClick="onClick"
-                android:text="@string/MAIN_FORM_GUARDAR" />
-
-            <!--
-        ##################################### 
-
-            <LinearLayout
-                android:id="@+id/group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <Button
-                    android:id="@+id/scanBtn"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="onClick"
-                    android:text="@string/ScanBtn" />
-
-                <Button
-                    android:id="@+id/audioBtn"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="onClick"
-                    android:text="@string/AudioBtn" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/scanCodeGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/CodeTittle" />
-
-                <TextView
-                    android:id="@+id/scanValue"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center" />
-            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowUbicacion1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1.0" >
 
             <TextView
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="@string/ImgTittle" />
-
-            <HorizontalScrollView
-                android:id="@+id/scroll"
+                android:id="@+id/MAIN_FORM_PROYECTO_PLANTA_ID"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="10sp"
+                android:paddingLeft="5dip"
+                android:paddingTop="10sp"
+                android:textSize="15dip"
+                android:textStyle="bold" />
+        </TableRow>
 
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/images"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-                </LinearLayout>
-            </HorizontalScrollView>
+        <TableRow
+            android:id="@+id/tableRowUbicacion1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="1.0" >
 
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/AudioTittle" />
+                android:layout_weight="1"
+                android:background="#B0B0B0"
+                android:paddingLeft="5dip"
+                android:text="@string/MAIN_FORM_UBICACION"
+                android:textSize="15dip"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowUbicacion1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Area -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_AREA"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_AREA_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:inputType="text"
+                android:tag="MAIN_FORM_AREA_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowUbicacion1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Edificio -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_EDIFICIO"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_EDIFICIO_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:inputType="text"
+                android:tag="MAIN_FORM_EDIFICIO_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowUbicacion2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Departamento -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_DEPARTAMENTO"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_DEPARTAMENTO_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:inputType="text"
+                android:tag="MAIN_FORM_DEPARTAMENTO_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowUbicacion2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Piso -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_PISO"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_PISO_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:inputType="text"
+                android:tag="MAIN_FORM_PISO_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowUbicacion2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="1.0" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#B0B0B0"
+                android:paddingLeft="5dip"
+                android:text="@string/MAIN_FORM_ACTIVO"
+                android:textSize="15dip"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowUbicacion2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Nombre -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.30"
+                android:text="@string/MAIN_FORM_NOMBRE"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_NOMBRE_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.70"
+                android:inputType="text"
+                android:tag="MAIN_FORM_NOMBRE_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Codigo vasa -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_CODIGO_VASA"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_CODIGO_VASA_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:inputType="text"
+                android:tag="MAIN_FORM_CODIGO_VASA_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Codigo cliente -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_CODIGO_CLIENTE"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_CODIGO_CLIENTE_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:inputType="text"
+                android:tag="MAIN_FORM_CODIGO_CLIENTE_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Marca -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_MARCA"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_MARCA_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:inputType="text"
+                android:tag="MAIN_FORM_MARCA_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- MODELO -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_MODELO"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_MODELO_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:inputType="text"
+                android:tag="MAIN_FORM_MODELO_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- SERIAL -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_SERIAL"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_SERIAL_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:inputType="text"
+                android:tag="MAIN_FORM_SERIAL_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- TIPO -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_TIPO"
+                android:textStyle="bold" />
+
+            <!-- OJO -->
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_TIPO_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:tag="MAIN_FORM_TIPO_ID"
+                android:textColor="#000000" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Fabricante -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_FABRICANTE"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_FABRICANTE_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:inputType="text"
+                android:tag="MAIN_FORM_FABRICANTE_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- PAIS -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_PAIS"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_PAIS_ORIGEN_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:inputType="text"
+                android:tag="MAIN_FORM_PAIS_ORIGEN_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- CODIGO_PLANTA -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_CODIGO_PLANTA"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_CODIGO_PLANTA_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:inputType="text"
+                android:tag="MAIN_FORM_CODIGO_PLANTA_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- CAPACIDAD -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_CAPACIDAD"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_CAPACIDAD_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:inputType="text"
+                android:tag="MAIN_FORM_CAPACIDAD_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- DIMENCIONES -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="@string/MAIN_FORM_DIMENCIONES"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_DIMENSIONES_PUL_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.08"
+                android:inputType="text"
+                android:tag="MAIN_FORM_DIMENSIONES_PUL_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:text="@string/MAIN_FORM_DIMENSIONES_PUL" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.04"
+                android:text="@string/MAIN_FORM_DIMENSIONES_L" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_DIMENSIONES_L_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:inputType="text"
+                android:tag="MAIN_FORM_DIMENSIONES_L_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.05"
+                android:text="@string/MAIN_FORM_DIMENCIONES_M" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.04"
+                android:text="@string/MAIN_FORM_DIMENSIONES_A" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_DIMENSIONES_A_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:inputType="text"
+                android:tag="MAIN_FORM_DIMENSIONES_A_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.05"
+                android:text="@string/MAIN_FORM_DIMENCIONES_M" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.05"
+                android:text="@string/MAIN_FORM_DIMENSIONES_H" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_DIMENSIONES_H_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:inputType="text"
+                android:tag="MAIN_FORM_DIMENSIONES_H_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.05"
+                android:text="@string/MAIN_FORM_DIMENCIONES_M" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Accionado por -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/MAIN_FORM_ACCIONADO"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo82"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Accionado por -->
+
+            <Spinner
+                android:id="@+id/ACCIONADO_LIST_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/ACCIONADO_POR"
+                android:prompt="@string/ACCIONADO_POR_PROMPT" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:text="@string/MAIN_FORM_ACCIONADO_DE"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_ACCIONADO_DE_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:inputType="text"
+                android:tag="MAIN_FORM_ACCIONADO_DE_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+
+            <RadioGroup
+                android:id="@+id/ACCIONADO_RADIO_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/HP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/MAIN_FORM_MOTOR_HP" />
+
+                <RadioButton
+                    android:id="@+id/KW"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MAIN_FORM_MOTOR_KW" />
+            </RadioGroup>
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_ACCIONADO_POR_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:inputType="text"
+                android:tag="MAIN_FORM_ACCIONADO_POR_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:text="@string/MAIN_FORM_MOTOR_RPM" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Completo con -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/COMPLETO"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo102"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Completo con -->
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_COMPLETO_CON_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:tag="MAIN_FORM_COMPLETO_CON_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Recubierto con -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/RECUBIERTO"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo112"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <Spinner
+                android:id="@+id/RECUBIERTO_CON_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/RECUBIERTO_CON"
+                android:prompt="@string/RECUBIERTO" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Construido con -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/CONSTRUIDO"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <Spinner
+                android:id="@+id/CONSTRUIDO_CON_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/CONSTRUIDO_CON"
+                android:prompt="@string/CONSTRUIDO" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/CONSTRUIDO_E"
+                android:textStyle="bold" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_CONSTRUIDO_E_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:inputType="text"
+                android:tag="MAIN_FORM_CONSTRUIDO_E_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:text="@string/CONSTRUIDO_MM"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Eje de la Bomba -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/EJE_BOMBA"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo132"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Eje de la Bomba -->
+
+            <Spinner
+                android:id="@+id/EJE_BOMBA_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/EJE_BOMBA"
+                android:prompt="@string/EJE_BOMBA" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Montado sobre -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MONTADO"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo142"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Montado sobre -->
+
+            <Spinner
+                android:id="@+id/MONTADO_SOBRE_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/MONTADO_SOBRE"
+                android:prompt="@string/MONTADO" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- CONDICION -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/CONDICION"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo152"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- CONDICION -->
+
+            <Spinner
+                android:id="@+id/CONDICION_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/CONDICION_VALUE"
+                android:prompt="@string/CONDICION" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Funcionando -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_ESTADO_FUNCIONANDO"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/FUNCIONANDO_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/FUNCIONANDO_SI_ID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/MAIN_FORM_ESTADO_FUNCIONANDO_SI" />
+
+                <RadioButton
+                    android:id="@+id/FUNCIONANDO_NO_ID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MAIN_FORM_ESTADO_FUNCIONANDO_NO" />
+            </RadioGroup>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Funcionando -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_FLUIDO"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo172"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Funcionando -->
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_FLUIDO_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:tag="MAIN_FORM_FLUIDO_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_FLUIDO_ENTRADA" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_FLUIDO_ENTRADA_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:inputType="text"
+                android:tag="MAIN_FORM_FLUIDO_ENTRADA_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:text="@string/MAIN_FORM_DIMENSIONES_PUL" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_FLUIDO_SALIDA" />
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_FLUIDO_SALIDA_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:inputType="text"
+                android:tag="MAIN_FORM_FLUIDO_SALIDA_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:text="@string/MAIN_FORM_DIMENSIONES_PUL" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_ESTIMADO"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo192"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_ESTIMADO_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:tag="MAIN_FORM_ESTIMADO_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+		<TableRow
+            android:id="@+id/tableRowActivo20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_MOTOR"
+                android:textStyle="bold" />
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/tableRowActivo202"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_MOTOR_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:tag="MAIN_FORM_KM_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRowActivo21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_KM"
+                android:textStyle="bold" />
+        </TableRow>
+		
+        <TableRow
+            android:id="@+id/tableRowActivo212"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_KM_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:tag="MAIN_FORM_PLACA_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+		<TableRow
+            android:id="@+id/tableRowActivo22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_PLACA"
+                android:textStyle="bold" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRowActivo222"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_PLACA_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:tag="MAIN_FORM_PLACA_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+		<TableRow
+            android:id="@+id/tableRowActivo23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_CILINDRO"
+                android:textStyle="bold" />
+        </TableRow>
+        
+		 <TableRow
+            android:id="@+id/tableRowActivo232"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_CILINDRO_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:tag="MAIN_FORM_CILINDRO_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRowActivo24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_DESCRIPCION"
+                android:textStyle="bold" />
+        </TableRow>
+        
+		 <TableRow
+            android:id="@+id/tableRowActivo242"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <com.nahmens.inventario.utils.InstantAutoComplete
+                android:id="@+id/MAIN_FORM_DESCRIPCION_ID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:tag="MAIN_FORM_DESCRIPCION_ID"
+                android:textColor="#000000" >
+            </com.nahmens.inventario.utils.InstantAutoComplete>
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRowActivo25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <!-- Audio -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/AudioBtn"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/audioBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:src="@drawable/voice" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
 
             <HorizontalScrollView
                 android:id="@+id/audioScroll"
@@ -1096,22 +1284,74 @@
                 android:layout_height="wrap_content" >
 
                 <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/audio"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="fill_parent"
                     android:orientation="horizontal" >
                 </LinearLayout>
             </HorizontalScrollView>
+        </TableRow>
 
-        
-        <ListView
-            android:id="@+id/plist"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-        </ListView>
-            -->
-        </LinearLayout>
-    </ScrollView>
+        <TableRow
+            android:id="@+id/tableRowActivo27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
 
-</LinearLayout>
+            <!-- Foto -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/MAIN_FORM_FOTO"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/picBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:src="@drawable/capture" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowActivo28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+
+            <HorizontalScrollView
+                android:id="@+id/scroll"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:id="@+id/images"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+            </HorizontalScrollView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowUbicacion2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:weightSum="1.0" >
+
+            <Button
+                android:id="@+id/GUARDAR"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="@string/MAIN_FORM_GUARDAR" />
+        </TableRow>
+    </TableLayout>
+
+</ScrollView>

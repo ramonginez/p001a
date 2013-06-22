@@ -50,7 +50,7 @@ public class  InventarioControllerImpl implements InventarioController {
 
 
 	//private static final String DEFAULT_SERVER = "http://vasa.zentyal.me/webserver/";
-	private static final String DEFAULT_SERVER = "http://192.168.1.109:8888/webserver/";
+	private static final String DEFAULT_SERVER = "http://192.168.1.100:8888/webserver/";
 	//private static final String DEFAULT_SERVER = "http://200.8.226.27/webserver/";
 	
 	private HashMap<String, List<String>>  CAMPO_AUTO_COMPLETE_VALUES; 

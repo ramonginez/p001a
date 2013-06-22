@@ -73,6 +73,10 @@
     <string name="MAIN_FORM_OBSERVACIONES">Observaciones:</string>
     <string name="MAIN_FORM_FLUIDO">Fluido:</string>
     <string name="MAIN_FORM_ESTIMADO">Estimado:</string>
+    <string name="MAIN_FORM_MOTOR">Motor:</string>
+    <string name="MAIN_FORM_KM">KM:</string>
+    <string name="MAIN_FORM_PLACA">Placa:</string>
+    <string name="MAIN_FORM_CILINDRO">Cilindros:</string>
     <string name="MAIN_FORM_FLUIDO_ENTRADA">Entrada:</string>
     <string name="MAIN_FORM_FLUIDO_SALIDA">Salida:</string>
     <string name="MAIN_FORM_FOTO">Foto:</string>

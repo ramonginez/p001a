@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -52,7 +51,6 @@ import com.nahmens.inventario.sqlite.InventarioControllerImpl;
 import com.nahmens.inventario.sqlite.InventarioDataSource;
 import com.nahmens.inventario.utils.InstantAutoComplete;
 
-@SuppressLint("ParserError")
 public class InventarioActivity extends Activity {
 
 	final Context context = this;
@@ -160,8 +158,8 @@ public class InventarioActivity extends Activity {
 		//Obtenemos referencia a la tabla que contiene los campos Activo
 		TableLayout mTableLayoutActivo =  (TableLayout) findViewById( R.id.tableLayoutActivo);
 
-		//Obtenemos referencia a la tabla que contiene los campos ubicacion
-		TableLayout mTableLayoutUbicacion =  (TableLayout) findViewById( R.id.tableLayoutUbicacion);
+		/*//Obtenemos referencia a la tabla que contiene los campos ubicacion
+		Ta*/
 		
 		//Obtenemos lista de valores para los campos 
 		InventarioDataSource invDB = InventarioDataSource.getInstance(context);
@@ -169,7 +167,7 @@ public class InventarioActivity extends Activity {
 		
 		//Asignamos autocomplete a los campos en las tablas activo y ubicacion
 		setAutocompleteCampos(mTableLayoutActivo, mapeo);
-		setAutocompleteCampos(mTableLayoutUbicacion, mapeo);
+		//setAutocompleteCampos(mTableLayoutUbicacion, mapeo);
 
 	}
 
@@ -751,6 +749,13 @@ public class InventarioActivity extends Activity {
 			setText(data, R.id.MAIN_FORM_FLUIDO_ENTRADA_ID , Inventario.FLUIDO_ENTRADA);
 			setText(data, R.id.MAIN_FORM_FLUIDO_SALIDA_ID , Inventario.FLUIDO_SALIDA);
 
+			setText(data, R.id.MAIN_FORM_MOTOR_ID , Inventario.MOTOR);
+			setText(data, R.id.MAIN_FORM_KM_ID , Inventario.KM);
+			setText(data, R.id.MAIN_FORM_PLACA_ID , Inventario.PLACA);
+			setText(data, R.id.MAIN_FORM_CILINDRO_ID , Inventario.CILINDROS);
+			setText(data, R.id.MAIN_FORM_DESCRIPCION_ID , Inventario.DESCRIPCION);
+
+			
 			setFoto(inventario.getImageMedia());
 			setAudio(inventario.getAudioMedia());
 
@@ -902,6 +907,12 @@ public class InventarioActivity extends Activity {
 		saveData(data, R.id.MAIN_FORM_FLUIDO_ENTRADA_ID , Inventario.FLUIDO_ENTRADA);
 		saveData(data, R.id.MAIN_FORM_FLUIDO_SALIDA_ID , Inventario.FLUIDO_SALIDA);
 		saveData(data, R.id.MAIN_FORM_ESTIMADO_ID , Inventario.ESTIMADO);
+		saveData(data, R.id.MAIN_FORM_MOTOR_ID , Inventario.MOTOR);
+		saveData(data, R.id.MAIN_FORM_KM_ID , Inventario.KM);
+		saveData(data, R.id.MAIN_FORM_PLACA_ID , Inventario.PLACA);
+		saveData(data, R.id.MAIN_FORM_CILINDRO_ID , Inventario.CILINDROS);
+		saveData(data, R.id.MAIN_FORM_DESCRIPCION_ID , Inventario.DESCRIPCION);
+
 
 		_lastArea = data.get(Inventario.AREA);
 		_lastEdificio = data.get(Inventario.EDIFICIO);

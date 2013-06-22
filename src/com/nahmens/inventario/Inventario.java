@@ -122,6 +122,10 @@ public class Inventario {
 	public static final String CONDICION  ="condicion";
 	public static final String ESTIMADO  ="estimado";
 	public static final String EJE_BOMBA ="ejeBomba";
-
+	public static final String DESCRIPCION ="descripcion";
+	public static final String MOTOR ="motor";
+	public static final String KM ="km";
+	public static final String CILINDROS ="cilindros";
+	public static final String PLACA ="placa";
 
 }

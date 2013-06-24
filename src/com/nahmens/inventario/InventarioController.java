@@ -2,8 +2,6 @@ package com.nahmens.inventario;
 
 import java.util.List;
 
-import org.json.JSONArray;
-
 public interface InventarioController {
 
 	
@@ -40,4 +38,6 @@ public interface InventarioController {
 	public List<String> getProyectos();
 
 	public boolean isProjectSync(String proyecto);
+
+	public void syncProyecto(String pid) throws Exception;
 }

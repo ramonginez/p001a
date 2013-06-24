@@ -519,6 +519,18 @@ public class  InventarioControllerImpl implements InventarioController {
 
 	}
 
+	@Override
+	public void syncProyecto(String pid) throws Exception {
+
+
+		List<String> inventarios =  dataSource.getInventarios(pid); 
+		
+		for(String inventario : inventarios){
+			
+			syncInventario(inventario);
+		}
+	}
+
 
 
 }

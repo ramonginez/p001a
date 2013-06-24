@@ -326,7 +326,7 @@ public class ProyectosActivity extends Activity {
 
 					try {
 
-						//controller.syncInventario(pid);
+						controller.syncProyecto(pid);
 
 						setList();
 						Toast.makeText(getApplicationContext(), "Sincronizaci—n exitosa!",Toast.LENGTH_LONG).show();

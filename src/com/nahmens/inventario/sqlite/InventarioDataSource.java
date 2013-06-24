@@ -1057,9 +1057,9 @@ public class InventarioDataSource {
 				}
 
 				String saved =  jObj.getString(Inventario.LAST_SAVED);
-				
+
 				String sync =  jObj.getString(Inventario.LAST_SYNC);
-				
+
 				if(!saved.equals(sync)){
 
 					return false;
@@ -1075,6 +1075,46 @@ public class InventarioDataSource {
 			close();
 		}
 
+
+	}
+
+	public List<String> getInventarios(String pid) {
+
+		List<String>  inventarios = new ArrayList<String>();
+
+		try{
+
+			open();
+
+			// Select All Query
+			String selectQuery = "SELECT inventario from `data` WHERE `data`.`key`='proyecto' and `data`.`value`='"+pid+"'";
+
+			Cursor cursor = database.rawQuery(selectQuery, null);
+
+			cursor.moveToFirst();
+
+			while (!cursor.isAfterLast()) {
+
+
+				String id = cursor.getString(0);
+
+				if(!inventarios.contains(id)){
+
+					inventarios.add(id);
+				}
+
+				cursor.moveToNext();
+			}
+
+			// Make sure to close the cursor
+			cursor.close();
+
+			return inventarios;
+
+
+		}finally{
+			close();
+		}
 
 	}
 

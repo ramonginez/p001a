@@ -24,6 +24,7 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
@@ -52,25 +53,27 @@ public class  InventarioControllerImpl implements InventarioController {
 	//private static final String DEFAULT_SERVER = "http://vasa.zentyal.me/webserver/";
 	private static final String DEFAULT_SERVER = "http://192.168.1.100:8888/webserver/";
 	//private static final String DEFAULT_SERVER = "http://200.8.226.27/webserver/";
-	
+
+	public static final String PROYECTO_DN = "PROYECTO_DN";
+
 	private HashMap<String, List<String>>  CAMPO_AUTO_COMPLETE_VALUES; 
-	
-//
+
+	//
 	public InventarioControllerImpl(Context context){
 
 		dataSource = InventarioDataSource.getInstance(context);
-		
+
 		this.loadAutoComplteValues();
 	}
 
 	private void loadAutoComplteValues() {
-		
+
 		CAMPO_AUTO_COMPLETE_VALUES =  dataSource.getAutoComplete();
 
 	}
-	
+
 	public  List<String>  getAutoCompleteValues(String key){
-		
+
 		return CAMPO_AUTO_COMPLETE_VALUES.get(key);
 	}
 
@@ -93,6 +96,24 @@ public class  InventarioControllerImpl implements InventarioController {
 		dataSource.setInventario(inventario);		
 
 	}
+	
+	@Override
+	public void saveInventarioForCreation(Inventario inventario) {
+
+		HashMap<String,String>invData = inventario.getData();
+
+		Date now = new Date();
+
+		String time = String.valueOf(now.getTime());
+		
+		invData.put(Inventario.LAST_SAVED, time);
+
+		invData.put(Inventario.LAST_SYNC, time);
+
+		dataSource.setInventario(inventario);		
+
+	}
+	
 
 	@Override
 	public List<String> getSavedAttributes(String key) {
@@ -153,7 +174,7 @@ public class  InventarioControllerImpl implements InventarioController {
 		JSONObject object = getValuesFromServer();
 
 		JSONArray userArray = object.getJSONArray(SERVER_RESPONSE_USER_LIST_KEY);
-		
+
 		JSONArray campoArray = object.getJSONArray(SERVER_RESPONSE_CAMPO_LIST_KEY);
 
 		dataSource.setUserTable(userArray);
@@ -280,9 +301,9 @@ public class  InventarioControllerImpl implements InventarioController {
 
 
 				for(byte[] data : audio){
-					
+
 					UUID uid = UUID.randomUUID();
-					
+
 					String fId = "audio-"+ uid;
 
 					File exporFile = File.createTempFile(id, ".mp3");
@@ -293,7 +314,7 @@ public class  InventarioControllerImpl implements InventarioController {
 
 					mp.addPart(fId, new FileBody(exporFile));
 
-					
+
 
 				}
 
@@ -306,7 +327,7 @@ public class  InventarioControllerImpl implements InventarioController {
 				for(byte[] data : img){
 
 					UUID uid = UUID.randomUUID();
-					
+
 					String fId = "img-"+ uid ;
 
 					File exporFile = File.createTempFile(id, ".png");
@@ -332,7 +353,7 @@ public class  InventarioControllerImpl implements InventarioController {
 				mp.addPart("inventario", new FileBody(exporFile));
 
 			}
-			
+
 			if(checkin!=null){
 
 				File exporFile = File.createTempFile("checkin", ".json");
@@ -387,7 +408,7 @@ public class  InventarioControllerImpl implements InventarioController {
 		Inventario inventario = dataSource.getInventario(id);	
 
 		JSONArray jCheck =  dataSource.getCheckin();
-		
+
 		HashMap<String,String> data = inventario.getData();
 
 		boolean sentOk = sendInventario(inventario,jCheck);
@@ -399,7 +420,7 @@ public class  InventarioControllerImpl implements InventarioController {
 			data.put(Inventario.LAST_SYNC, lastSaved);
 
 			dataSource.setInventario(inventario);	
-			
+
 			dataSource.emptyCheckin();
 
 		}
@@ -418,7 +439,7 @@ public class  InventarioControllerImpl implements InventarioController {
 		JSONObject jData = new JSONObject();
 
 		inventarioObj.put("id", id);
-		
+
 		@SuppressWarnings("rawtypes")
 		Iterator it = data.entrySet().iterator();
 
@@ -472,6 +493,30 @@ public class  InventarioControllerImpl implements InventarioController {
 			String longitude) throws Exception {
 
 		dataSource.checkin(user, time, latitude, longitude);		
+	}
+
+	public List<String> getProyectos() {
+
+		return dataSource.getProjects();
+
+	}
+
+	@Override
+	public boolean isProjectSync(String proyecto) {
+
+
+
+		try {
+			
+			return dataSource.isProjectSync(proyecto);
+			
+		} catch (JSONException e) {
+
+			e.printStackTrace();
+		}
+		return false;
+
+
 	}
 
 

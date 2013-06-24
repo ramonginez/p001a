@@ -4,8 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
@@ -23,11 +29,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nahmens.inventario.Inventario;
+import com.nahmens.inventario.InventarioController;
+import com.nahmens.inventario.mobile.InventariosActivity.idAlertHandler;
+import com.nahmens.inventario.mobile.InventariosActivity.syncClickHandler;
 import com.nahmens.inventario.sqlite.InventarioControllerImpl;
 
 public class ProyectosActivity extends Activity {
 
-	private  InventarioControllerImpl controller;
+	private  InventarioController controller;
 
 	final Context context = this;
 
@@ -79,6 +88,7 @@ public class ProyectosActivity extends Activity {
 		case 1: 
 
 			setList();
+
 
 			break;
 
@@ -137,9 +147,10 @@ public class ProyectosActivity extends Activity {
 
 				inventario.setData(data);
 
-				controller.saveInventario(inventario);
+				controller.saveInventarioForCreation(inventario);
 
 				setList();
+
 
 			}
 
@@ -150,73 +161,93 @@ public class ProyectosActivity extends Activity {
 	/*******************************************************************************
 	 * 
 	 * 			List
+	 * @throws JSONException 
 	 * 
 	 * */
-	private void setList() {
+	private void setList()  {
 
 		TableLayout tl = (TableLayout) findViewById(R.id.LISTA_PROYECTOS_ID);
 
 		listMenu = (LinearLayout) findViewById(R.id.LISTA_PROYECTOS_ID);
 
-		List<String> inventarios = controller.getInventarioIds();
-
 		listMenu.removeAllViews();
 		
 		proyectos = new ArrayList<String>();
 
-		if(inventarios!=null){
+		List<String> proyectoList = controller.getProyectos();
+
+		if(proyectoList!=null){
 
 			int i = 1;
-			for(String inventarioId : inventarios){
+
+			for (String proyecto : proyectoList) {
 				
-				Inventario inventario = controller.getInventario(inventarioId);
-
-				HashMap<String,String> data = inventario.getData();
+				boolean isSync = controller.isProjectSync(proyecto);
 				
-				String display = data.get(Inventario.PROYECTO);
+				proyectos.add(proyecto);
 				
-				if(!proyectos.contains(display)){
-					
-					proyectos.add(display);
-					
-					TableRow tr = new TableRow(this);
-					LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-					tr.setLayoutParams(lp);
+				TableRow tr = new TableRow(this);
+				LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+				tr.setLayoutParams(lp);
 
 
-					TextView tv=new TextView(this);
+				TextView tv=new TextView(this);
 
-					tv.setText(display);
-					tv.setTypeface(null, Typeface.BOLD);
-					tv.setPadding(10, 0, 0, 0);
-					tv.setLayoutParams(lp);
-					tv.setTextSize(20);
-					tv.setLayoutParams(new LayoutParams(300, LayoutParams.WRAP_CONTENT));
+				tv.setText(proyecto);
+				tv.setTypeface(null, Typeface.BOLD);
+				tv.setPadding(10, 0, 0, 0);
+				tv.setLayoutParams(lp);
+				tv.setTextSize(20);
+				tv.setLayoutParams(new LayoutParams(300, LayoutParams.WRAP_CONTENT));
 
-					ImageView imgViewEdit = new ImageView(this);
-					imgViewEdit.setImageDrawable(getResources().getDrawable(R.drawable.writing));
-					imgViewEdit.setPadding(20, 0, 0, 0);
-					imgViewEdit.setLayoutParams(lp);
-					imgViewEdit.setOnClickListener( new ProyectoClickHandler(display) );
+				
+				ImageView imgView = new ImageView(this);
+				imgView.setPadding(10, 0, 0, 0);
+				imgView.setLayoutParams(lp);
+
+				int color = R.drawable.red_light;
+
+				if(isSync){
+
+					color = R.drawable.green_light;
+				}
 
 
-					if(i % 2 == 0){
+				imgView.setImageDrawable(getResources().getDrawable(color));
 
-						tr.setBackgroundColor(0xffcccccc);
+				
+				ImageView imgViewSync = new ImageView(this);
+				imgViewSync.setImageDrawable(getResources().getDrawable(R.drawable.sync));
+				imgViewSync.setPadding(20, 0, 0, 0);
+				imgViewSync.setLayoutParams(lp);
+				imgViewSync.setOnClickListener( new syncClickHandler(proyecto) );
+
+				ImageView imgViewEdit = new ImageView(this);
+				imgViewEdit.setImageDrawable(getResources().getDrawable(R.drawable.writing));
+				imgViewEdit.setPadding(20, 0, 0, 0);
+				imgViewEdit.setLayoutParams(lp);
+				imgViewEdit.setOnClickListener( new ProyectoClickHandler(proyecto) );
 
 
-					}else{
+			
+				if(i % 2 == 0){
 
-						tr.setBackgroundColor(0xff888888);
+					tr.setBackgroundColor(0xffcccccc);
 
-					}
-					tr.addView(tv);
-					tr.addView(imgViewEdit);
 
-					tl.addView(tr, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-					i++;  
+				}else{
+
+					tr.setBackgroundColor(0xff888888);
+
 				}
 				
+				tr.addView(imgView);
+				tr.addView(tv);
+				tr.addView(imgViewSync);
+				tr.addView(imgViewEdit);
+
+				tl.addView(tr, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+				i++;  
 			}
 			
 			
@@ -224,6 +255,8 @@ public class ProyectosActivity extends Activity {
 
 
 	}
+	
+	
 	
 	public class ProyectoClickHandler implements View.OnClickListener 
 	{	
@@ -250,6 +283,81 @@ public class ProyectosActivity extends Activity {
 
 	}
 
+
+	public class idAlertHandler extends AlertDialog.Builder{
+
+		String pid;
+
+		public idAlertHandler(Context arg0, String pid) {
+
+			super(arg0);
+
+			this.pid = pid;
+		} 
+
+	}
+
+	public class syncClickHandler implements View.OnClickListener 
+	{
+
+		String pid;
+
+		syncClickHandler(String id){
+
+			this.pid=id;
+		}
+
+		@Override
+		public void onClick(View v) {
+
+			AlertDialog.Builder alertDialogBuilder = new idAlertHandler(context,pid);
+
+			// set title
+			alertDialogBuilder.setTitle("VASA");
+
+			// set dialog message
+			alertDialogBuilder
+			.setMessage("Seguro que deseas sincronizar los datos de "+pid+" ?")
+			.setCancelable(false)
+			.setPositiveButton("Si",new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,int id) {
+					// if this button is clicked, close
+					// current activity
+
+					try {
+
+						//controller.syncInventario(pid);
+
+						setList();
+						Toast.makeText(getApplicationContext(), "Sincronizaci—n exitosa!",Toast.LENGTH_LONG).show();
+
+					} catch (Exception e) {
+
+						Toast.makeText(getApplicationContext(), "Fallo la sincronizaci—n, intente otra vez!",Toast.LENGTH_LONG).show();
+
+					}
+
+				}
+			})
+			.setNegativeButton("No",new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,int id) {
+					// if this button is clicked, just close
+					// the dialog box and do nothing
+					dialog.cancel();
+				}
+			});
+
+			// create alert dialog
+			AlertDialog alertDialog = alertDialogBuilder.create();
+
+			// show it
+			alertDialog.show();
+
+
+
+		}	
+
+	}
 
 
 

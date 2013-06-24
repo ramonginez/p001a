@@ -2,9 +2,13 @@ package com.nahmens.inventario;
 
 import java.util.List;
 
+import org.json.JSONArray;
+
 public interface InventarioController {
 
 	
+	String PROYECTO_DN = "PROYECTO_DN";
+
 	public  Inventario createNewInventario(String user);		
 	
 	public  List<String> getInventarioIds();
@@ -14,7 +18,9 @@ public interface InventarioController {
 	public  void deleteInventario(String id);
 	
 	public  void saveInventario(Inventario inventario);
-	
+
+	public  void saveInventarioForCreation(Inventario inventario);
+
 	public  List<String> getSavedAttributes(String key);
 	
 	public  User getUserById(String id,String password);
@@ -30,4 +36,8 @@ public interface InventarioController {
 	public void checkin(String user, String time, String latitude, String longitude) throws Exception;
 
 	public List<String> getAutoCompleteValues(String key);
+
+	public List<String> getProyectos();
+
+	public boolean isProjectSync(String proyecto);
 }

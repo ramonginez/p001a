@@ -563,9 +563,9 @@ public class InventarioDataSource {
 				JSONObject campoObject = campoArray.getJSONObject(i);
 
 				String id = campoObject.getString(InventarioControllerImpl.SERVER_RESPONSE_CAMPO_ID_KEY);
-						
+
 				String value = campoObject.getString(InventarioControllerImpl.SERVER_RESPONSE_CAMPO_VALUE_KEY);
-			
+
 				Log.i( "setCampoTable", "id:"+id +", pwd:"+value);
 
 				ContentValues values = new ContentValues();
@@ -894,9 +894,9 @@ public class InventarioDataSource {
 		}
 
 	}
-	
+
 	public void emptyCheckin() {
-		
+
 		try{
 
 			open();
@@ -932,20 +932,20 @@ public class InventarioDataSource {
 			while (!cursor.isAfterLast()) {
 
 				String id = cursor.getString(0);
-				
+
 				String value = cursor.getString(1);
-				
+
 				List<String> values = map.get(id);
-				
+
 				if(values==null){
-					
+
 					values = new ArrayList<String>();
 				}
-				
+
 				values.add(value);
-				
+
 				map.put(id, values);
-				
+
 				cursor.moveToNext();
 
 			}
@@ -958,6 +958,124 @@ public class InventarioDataSource {
 
 			close();
 		}
+	}
+
+	public List<String> getProjects() {
+		try{
+			open();
+
+			List<String> projects = new ArrayList<String>();
+
+			String[] allColumns = { MySQLiteHelper.DATA_COLUMN_VALUE };
+
+			Cursor cursor = database.query( MySQLiteHelper.TABLE_DATA,
+					allColumns, MySQLiteHelper.DATA_COLUMN_KEY + " = 'proyecto'", null, null, null, null);
+
+			cursor.moveToFirst();
+
+			while (!cursor.isAfterLast()) {
+
+				String value = cursor.getString(0);
+
+				if(!projects.contains(value)){
+
+					projects.add(value);
+
+				}
+
+				cursor.moveToNext();
+			}
+
+			// Make sure to close the cursor
+			cursor.close();
+
+			return projects;
+
+
+		}finally{
+			close();
+		}
+	}
+
+	public boolean isProjectSync(String proyecto) throws JSONException {
+
+		try{
+
+			open();
+
+			// Select All Query
+			String selectQuery = "Select * from `data` a where "
+					+"(a.inventario  in (SELECT inventario from `data` WHERE `data`.`key`='proyecto' and `data`.`value`='"+proyecto+"'))"
+					+"and ((a.`key`='"+Inventario.LAST_SAVED+"')or(a.`key`='"+Inventario.LAST_SYNC+"')) ORDER BY a.inventario";
+
+			Cursor cursor = database.rawQuery(selectQuery, null);
+
+			cursor.moveToFirst();
+
+			HashMap<String,JSONObject> inventarios = new HashMap<String,JSONObject>();
+
+			while (!cursor.isAfterLast()) {
+
+
+				String id = cursor.getString(0);
+				String key = cursor.getString(1);
+				String val = cursor.getString(2);
+
+				JSONObject jObj =inventarios.get(id);
+
+				if(jObj==null){
+
+					jObj = new JSONObject();
+				}
+
+				if(key.equals(Inventario.LAST_SAVED)){
+
+					jObj.put(Inventario.LAST_SAVED, val);
+
+				}else{
+
+					jObj.put(Inventario.LAST_SYNC, val);
+
+				}
+
+				inventarios.put(id, jObj);
+
+				cursor.moveToNext();
+			}
+
+			// Make sure to close the cursor
+			cursor.close();
+
+
+			for (Map.Entry<String, JSONObject> entry : inventarios.entrySet()) {
+
+				JSONObject jObj  = entry.getValue();
+
+				if(!jObj.has(Inventario.LAST_SAVED)||!jObj.has(Inventario.LAST_SYNC)){
+
+					return false;
+				}
+
+				String saved =  jObj.getString(Inventario.LAST_SAVED);
+				
+				String sync =  jObj.getString(Inventario.LAST_SYNC);
+				
+				if(!saved.equals(sync)){
+
+					return false;
+				}
+
+			}
+
+
+			return true;
+
+
+		}finally{
+			close();
+		}
+
+
 	}
 
 }
